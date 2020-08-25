@@ -32,5 +32,8 @@
   },
   "devDependencies": {
     "gulp": "^4.0.2"
+  },
+  "scripts": {
+    "action-version": "npm version prerelease --preid=\"${PR_BRANCH_NAME}\" --no-git-tag-version"
   }
 }
