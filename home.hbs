@@ -40,7 +40,7 @@
     {{!-- Navigation bar --}}
     <header class="header" id="myHeader">
             <nav>
-                 <img class="header-logo" src="{{asset "images/logo.png"}}" width="75" height="75" /> <input onclick="myFunction()" class="menu-btn" type="checkbox" id="menu-btn" /> <label class="menu-icon" for="menu-btn"><span class="navicon"></span></label>
+                 {{> logo}} <input onclick="myFunction()" class="menu-btn" type="checkbox" id="menu-btn" /> <label class="menu-icon" for="menu-btn"><span class="navicon"></span></label>
                 <ul class="menu">
                     <li ><a class="nav-current" href="/#mission" data-current="current page">MISSION</a></li>
                     <li><a class="nav-hover" href="/resources">RESOURCES</a></li>
