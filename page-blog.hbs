@@ -1,0 +1,117 @@
+<!doctype html>
+<html lang="{{@site.lang}}">
+
+<head>
+    <title>{{meta_title}}</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <link rel="stylesheet" href="{{asset "css/bootstrap.min.css"}}">
+
+
+    {{!-- Custom Styles --}}
+    <link rel="stylesheet" href="{{asset "css/style.css"}}">
+
+    {{!-- Header CSS --}}
+    <link rel="stylesheet" type="text/css" href="{{asset "css/header.css"}}" />
+
+    {{!-- Footer CSS --}}
+    <link rel="stylesheet" type="text/css" href="{{asset "css/footer.css"}}" />
+
+    {{!-- Hero CSS --}}
+    <link rel="stylesheet" type="text/css" href="{{asset "css/hero.css"}}" />
+
+    {{!-- Animate On Scroll Library --}}
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+
+
+
+    {{!-- Dynamic header content for SEO, meta tags, code injection etc --}}
+    {{ghost_head}}
+</head>
+
+<body class="{{body_class}}">
+
+
+    {{!-- Navigation bar --}}
+    <header class="header">
+            <nav>
+                <img class="header-logo" src="{{asset "images/logo.png"}}" width="75" height="75" /> <input class="menu-btn" type="checkbox" id="menu-btn" /> <label class="menu-icon" for="menu-btn"><span class="navicon"></span></label>
+                <ul class="menu">
+                    <li><a href="/">MISSION</a></li>
+                    <li><a href="/resources">RESdfsdfOURCES</a></li>
+                    <li style="text-decoration-line: underline;" data-current="current page"><a href="/blog">BLOG</a></li>
+                    <li><a href="/contact">CONTACT</a></li>
+                    <li><button type="button" class="donate-button">DONATE</button></li>
+                </ul>
+            </nav>
+        </header>
+
+        <div class="hero">
+            <div class="text-heading">
+            <img class="hero-logo" src="{{asset "images/logo.png"}}" width="300" height="300">
+            <h2>DEFUND THE POLICE</h2>
+           <div class="hero-social-media">
+
+            <img  src="{{asset "images/facebook.png"}}" width="50" height="50">
+            <img  src="{{asset "images/instagram.png"}}" width="50" height="50">
+            <img  src="{{asset "images/twitter.png"}}" width="50" height="50">
+
+
+            </div>
+            
+            <!--<section><h3>Recent posts from the blog</h3><ul><li> <a href="/blog/the-most-recent-post-so-far">The most recent post so far</a></li><li> <a href="/blog/a-simple-post">A simple blog post</a></li><li> <a href="/blog/another-post">Another post</a></li></ul></section>-->
+        </div>
+    </div>
+    <div class="section-1">
+
+        <div class="text-heading" > <h2>OUR MISSION</h2></div>
+        <div class="text-mission"> <p> Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Aliquam malesuada bibendum arcu vitae. Velit aliquet sagittis id consectetur purus ut faucibus pulvinar. Aenean pharetra magna ac placerat vestibulum. Rhoncus mattis rhoncus urna neque. Donec enim diam vulputate ut pharetra sit amet. Enim tortor at auctor urna nunc id. Sagittis purus sit amet volutpat consequat mauris nunc congue. Consequat ac felis donec et odio pellentesque diam. Vel facilisis volutpat est velit. Curabitur vitae nunc sed velit dignissim. Magna fermentum iaculis eu non diam phasellus. Molestie nunc non blandit massa enim nec dui. At in tellus integer feugiat scelerisque varius. Eget mauris pharetra et ultrices neque. Malesuada proin libero nunc consequat interdum varius sit. At imperdiet dui accumsan sit amet nulla. Ante metus dictum at tempor commodo ullamcorper a lacus vestibulum. Morbi leo urna molestie at elementum eu facilisis sed odio.</p></div>
+        
+    </div>
+    {{!-- End Navbar --}}
+
+    {{!-- All the main content gets inserted here, index.hbs, post.hbs, etc --}}
+    {{{body}}}
+
+    <footer>
+            <div class="footer-items">
+            <h2 class="footer-defund-the-police">DEFUND THE POLICE.</h2>
+ 
+        <!--     <img src="logo.png" width="100" height="100"> -->
+<hr>
+
+            <div class="hero-social-media">
+            <a href="https://www.facebook.com/wpgpoliceharm/" target="_blank"> <img class="hvr-float"  src="{{asset "images/facebook.png"}}" width="50" height="50"> </a>
+            <a href="https://www.instagram.com/wpgpoliceharm/" target="_blank"> <img class="hvr-float"  src="{{asset "images/instagram.png"}}" height="50"> </a>
+            <a href="https://twitter.com/WpgPoliceHarm" target="_blank"> <img class="hvr-float"  src="{{asset "images/twitter.png"}}" height="50"> </a>
+
+            </div>
+            </div>
+        </footer>
+
+    {{!-- Footer content goes here --}}
+    {{!-- <div class="card">
+        <div class="card-footer text-muted">
+            &copy; {{date format="YYYY"}} {{@site.title}}
+        </div>
+    </div> --}}
+    {{!-- End of footer --}}
+
+    {{!-- Dynamic footer content from code injection etc --}}
+    {{!-- {{ghost_foot}} --}}
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery Slim first, then Popper.js, then Bootstrap JS -->
+    <script src="{{asset "js/jquery.min.js"}}"></script>
+    <script src="{{asset "js/popper.min.js"}}"></script>
+    <script src="{{asset "js/bootstrap.min.js"}}"></script>
+    <script src="{{asset "js/main.js"}}"></script>
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+  <script>
+    AOS.init();
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,120 @@
+.hero {
+    height: fit-content;
+    min-height: 550px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-image: url("/assets/images/winnipeg.jpg");
+    background-size: cover;
+}
+@media screen and (min-width: 768px) {
+    .hero {
+        height: 100vh;
+    }
+}
+
+.hero2 {
+    height: fit-content;
+    min-height: 550px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-image: url("/assets/images/protest2.png");
+    background-position: center;
+    background-size: cover;
+}
+@media screen and (min-width: 768px) {
+    .hero2 {
+        height: 100vh;
+    }
+}
+
+.hero3 {
+    height: fit-content;
+    min-height: 550px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-image: url("/assets/images/protest3.jpg");
+    background-position: center;
+    background-size: cover;
+}
+@media screen and (min-width: 768px) {
+    .hero3 {
+        height: 100vh;
+    }
+}
+
+.section-1 {
+    width: 100%;
+    /*height: fit-content;*/
+    /*min-height: 550px;*/
+    margin-bottom: 100px;
+    justify-content: center;
+    margin-top: 100px;
+    background-color: white;
+    background-size: cover;
+}
+.text-mission {
+    font-size: 75%;
+    justify-content: center;
+    margin-top: 100px;
+    justify-content: center;
+    margin-top: 100px;
+    padding-right: 20px;
+    padding-left: 20px;
+}
+@media screen and (min-width: 768px) {
+    .text-mission {
+        font-size: 100%;
+        padding-right: 100px;
+        padding-left: 100px;
+    }
+}
+.hero-logo {
+    height: auto;
+    margin-bottom: 10px;
+    width: 50%;
+    height: 50%;
+
+}
+@media screen and (max-width: 768px) {
+    .hero-logo {
+        width: 30%;
+        height: 30%;
+    }
+}
+.header-logo {
+    width: 75px;
+    height: 75px;
+    float: left;
+    margin-left: 50px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+@media screen and (max-width: 600px) {
+    .header-logo{
+        margin-top: 20px;
+        width: 50px;
+        height: 50px;
+        margin-left: 0px;
+
+    }
+}
+
+
+.hero-social-media {
+    margin-top: 30px;
+}
+.hero-social-media img {
+    width: 25px;
+    height: 25px;
+    margin-right: 30px;
+}
+@media screen and (min-width: 768px) {
+    .hero-social-media img {
+        width: 50px;
+        height: 50px;
+    }
+}

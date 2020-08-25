@@ -1,0 +1,185 @@
+<!doctype html>
+<html lang="{{@site.lang}}">
+
+<head>
+    <title>{{meta_title}}</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <link rel="stylesheet" href="{{asset "css/bootstrap.min.css"}}">
+
+
+    {{!-- Custom Styles --}}
+    <link rel="stylesheet" href="{{asset "css/style.css"}}">
+
+    {{!-- Header CSS --}}
+    <link rel="stylesheet" type="text/css" href="{{asset "css/header.css"}}" />
+
+    {{!-- Footer CSS --}}
+    <link rel="stylesheet" type="text/css" href="{{asset "css/footer.css"}}" />
+
+    {{!-- Hero CSS --}}
+    <link rel="stylesheet" type="text/css" href="{{asset "css/hero.css"}}" />
+
+    {{!-- Animate On Scroll Library --}}
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans&family=Roboto:ital,wght@1,500&display=swap" rel="stylesheet">
+
+
+
+
+    {{!-- Dynamic header content for SEO, meta tags, code injection etc --}}
+    {{ghost_head}}
+</head>
+
+<body class="{{body_class}}">
+
+
+    {{!-- Navigation bar --}}
+    <header class="header" id="myHeader">
+            <nav>
+                 <img class="header-logo" src="{{asset "images/logo.png"}}" width="75" height="75" /> <input onclick="myFunction()" class="menu-btn" type="checkbox" id="menu-btn" /> <label class="menu-icon" for="menu-btn"><span class="navicon"></span></label>
+                <ul class="menu">
+                    <li ><a class="nav-current" href="/#mission" data-current="current page">MISSION</a></li>
+                    <li><a class="nav-hover" href="/resources">RESOURCES</a></li>
+                    <li><a class="nav-hover" href="/blog">BLOG</a></li>
+                    <li><a class="nav-hover" href="/contact">CONTACT</a></li>
+                    <li> <a href="/donate"><button type="button" class="donate-button">DONATE</button> </a></li>
+                </ul>
+            </nav>
+        </header>
+
+        <div class="hero2">
+            <div  class="text-heading">
+            <img  class="hero-logo" src="{{asset "images/logo.png"}}">
+            <h2 >DEFUND THE POLICE</h2>
+           <div data-aos="fade-up" class="hero-social-media">
+
+            <a href="https://www.facebook.com/wpgpoliceharm/" target="_blank"> <img class="hvr-float"  src="{{asset "images/facebook.png"}}" width="50" height="50"> </a>
+            <a href="https://www.instagram.com/wpgpoliceharm/" target="_blank"> <img class="hvr-float"  src="{{asset "images/instagram.png"}}" width="50" height="50"> </a>
+            <a href="https://twitter.com/WpgPoliceHarm" target="_blank"> <img class="hvr-float"  src="{{asset "images/twitter.png"}}" width="50" height="50"> </a>
+
+
+            </div>
+            
+            <!--<section><h3>Recent posts from the blog</h3><ul><li> <a href="/blog/the-most-recent-post-so-far">The most recent post so far</a></li><li> <a href="/blog/a-simple-post">A simple blog post</a></li><li> <a href="/blog/another-post">Another post</a></li></ul></section>-->
+        </div>
+    </div>
+    <div id="mission" class="section-1" style="margin-top:150px">
+
+        <div data-aos="fade-up" class="text-heading" > <h2>OUR MISSION</h2></div>
+        <div data-aos="fade-up" class="text-mission"> <div class="our-mission"> Our mission is to organize for the defunding and abolition of the Winnipeg Police Service (WPS) and reallocate its substantial resources to life-affirming institutions.</div></div>
+        
+    </div>
+
+    <section class="">
+    <div >
+
+        <div class="blog-flex-row">
+            {{#get "posts" limit="1"}}
+            {{!-- Iterate through each posts --}}
+            {{#foreach posts}}
+
+            <a class="text-dark" href="{{url}}">
+            <article class="{{post_class}} blog-card grow flex-col" data-aos="fade-up">
+                <div class="card-body">
+
+                    {{!-- Display primary tag of the post if exists--}}
+                    {{!-- {{#if primary_tag}}
+                    <a href="{{primary_tag.url}}" class="badge badge-success">
+                        {{primary_tag.name}}
+                    </a>
+                    {{/if}} --}}
+
+                    
+                        {{!-- Post title --}}
+                        <div class="text-heading"> <h3>{{title}}</h3> </div>
+                    
+
+                    {{!-- Displays post excerpt. Sets to display max 170 chars if not set --}}
+                    <p>{{excerpt characters="170"}}</p>
+
+                    <div>
+                        <span class="reading-time">{{reading_time}}</span>
+                        <span> - Published: {{date published_at timeago="true"}}</span>
+                    </div>
+
+                </div>{{!--/.post-card-content--}}
+            
+            </article>
+            </a>
+
+            {{/foreach}}
+            {{/get}}
+
+        </div>
+
+
+
+    </div>
+
+    <div data-aos="fade-up"  style="display: flex;
+    justify-content: center;margin-bottom: 100px;margin-top: 50px;"> 
+    <a href="/blog" class="myButton grow2">MORE POSTS</a>
+    </div>
+
+
+</section>
+
+
+        <footer>
+            <div class="footer-items">
+            <h2 class="footer-defund-the-police">DEFUND THE POLICE.</h2>
+ 
+        <!--     <img src="logo.png" width="100" height="100"> -->
+<hr>
+
+            <div class="hero-social-media">
+            <a href="https://www.facebook.com/wpgpoliceharm/" target="_blank"> <img class="hvr-float"  src="{{asset "images/facebook.png"}}" width="50" height="50"> </a>
+            <a href="https://www.instagram.com/wpgpoliceharm/" target="_blank"> <img class="hvr-float"  src="{{asset "images/instagram.png"}}" height="50"> </a>
+            <a href="https://twitter.com/WpgPoliceHarm" target="_blank"> <img class="hvr-float"  src="{{asset "images/twitter.png"}}" height="50"> </a>
+
+            </div>
+            </div>
+        </footer>
+    {{!-- End Navbar --}}
+
+    {{!-- All the main content gets inserted here, index.hbs, post.hbs, etc --}}
+    {{{body}}}
+
+    {{!-- Footer content goes here --}}
+    {{!-- <div class="card">
+        <div class="card-footer text-muted">
+            &copy; {{date format="YYYY"}} {{@site.title}}
+        </div>
+    </div> --}}
+    {{!-- End of footer --}}
+
+    {{!-- Dynamic footer content from code injection etc --}}
+    {{!-- {{ghost_foot}} --}}
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery Slim first, then Popper.js, then Bootstrap JS -->
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+    <script src="{{asset "js/jquery.min.js"}}"></script>
+    <script src="{{asset "js/popper.min.js"}}"></script>
+    <script src="{{asset "js/bootstrap.min.js"}}"></script>
+    <script src="{{asset "js/main.js"}}"></script>
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+    <script type="text/javascript"> 
+
+    function myFunction() {
+  var element = document.getElementById("myHeader");
+  element.classList.add("active");
+}
+    </script>
+  <script>
+    AOS.init({
+        once: true
+    });
+  </script>
+</body>
+
+</html>

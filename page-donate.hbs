@@ -1,0 +1,108 @@
+<!doctype html>
+<html lang="{{@site.lang}}">
+
+<head>
+    <title>{{meta_title}}</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <link rel="stylesheet" href="{{asset "css/bootstrap.min.css"}}">
+
+
+    {{!-- Custom Styles --}}
+    <link rel="stylesheet" href="{{asset "css/style.css"}}">
+
+    {{!-- Header CSS --}}
+    <link rel="stylesheet" type="text/css" href="{{asset "css/header.css"}}" />
+
+    {{!-- Footer CSS --}}
+    <link rel="stylesheet" type="text/css" href="{{asset "css/footer.css"}}" />
+
+    {{!-- Hero CSS --}}
+    <link rel="stylesheet" type="text/css" href="{{asset "css/hero.css"}}" />
+
+    {{!-- Animate On Scroll Library --}}
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans&family=Roboto:ital,wght@1,500&display=swap" rel="stylesheet">
+
+
+
+    {{!-- Dynamic header content for SEO, meta tags, code injection etc --}}
+    {{ghost_head}}
+</head>
+
+<body class="{{body_class}}">
+
+
+    {{!-- Navigation bar --}}
+    <header class="header" style="background-color: rgba(34,34,34,0.9);
+    box-shadow: 0 19px 38px rgba(0,0,0,0.30), 0 15px 12px rgba(0,0,0,0.22); margin-bottom: 50px;">
+            <nav>
+                <a href="/"> <img class="header-logo" src="{{asset "images/logo.png"}}" width="75" height="75" /> </a> <input class="menu-btn" type="checkbox" id="menu-btn" /> <label class="menu-icon" for="menu-btn"><span class="navicon"></span></label>
+                <ul class="menu">
+                    <li><a class="nav-hover" href="/#mission">MISSION</a></li>
+                    <li ><a class="nav-hover" href="/resources" data-current="current page">RESOURCES</a></li>
+                    <li><a class="nav-hover" href="/blog">BLOG</a></li>
+                    <li><a class="nav-hover" href="/contact">CONTACT</a></li>
+                    <li > <a href="/donate"><button type="button" class="donate-button ">DONATE</button> </a></li>
+                </ul>
+            </nav>
+        </header>
+
+        
+    <div id="mission" class="section-1">
+
+        <div data-aos="fade-up" class="text-heading" > <h2 style="margin-top: 100px;">Donate</h2></div>
+        <div data-aos="fade-up" class="text-mission"> <p class="e-transfer"> Every dollar helps. Donations go to paying for the costs of printing posters and pamphlets, paying honorariums to speakers and designers, and helping with costs incurred by families and loved ones of people killed by police.</p>
+
+        <p data-aos="fade-up" style="text-align:center;" class="e-transfer"> E-transfers can be sent to wpgpolicecauseharm@gmail.com </p>
+        </div>
+        
+    </div>
+
+        <footer>
+            <div class="footer-items">
+            <h2 class="footer-defund-the-police">DEFUND THE POLICE.</h2>
+ 
+        <!--     <img src="logo.png" width="100" height="100"> -->
+<hr>
+
+            <div class="hero-social-media">
+            <a href="https://www.facebook.com/wpgpoliceharm/" target="_blank"> <img class="hvr-float"  src="{{asset "images/facebook.png"}}" width="50" height="50"> </a>
+            <a href="https://www.instagram.com/wpgpoliceharm/" target="_blank"> <img class="hvr-float"  src="{{asset "images/instagram.png"}}" height="50"> </a>
+            <a href="https://twitter.com/WpgPoliceHarm" target="_blank"> <img class="hvr-float"  src="{{asset "images/twitter.png"}}" height="50"> </a>
+
+            </div>
+            </div>
+        </footer>
+    {{!-- End Navbar --}}
+
+    {{!-- All the main content gets inserted here, index.hbs, post.hbs, etc --}}
+    {{!-- {{{body}}} --}}
+
+    {{!-- Footer content goes here --}}
+    {{!-- <div class="card">
+        <div class="card-footer text-muted">
+            &copy; {{date format="YYYY"}} {{@site.title}}
+        </div>
+    </div> --}}
+    {{!-- End of footer --}}
+
+    {{!-- Dynamic footer content from code injection etc --}}
+    {{!-- {{ghost_foot}} --}}
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery Slim first, then Popper.js, then Bootstrap JS -->
+    <script src="{{asset "js/jquery.min.js"}}"></script>
+    <script src="{{asset "js/popper.min.js"}}"></script>
+    <script src="{{asset "js/bootstrap.min.js"}}"></script>
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+  <script>
+    AOS.init( {once: true}
+    );
+  </script>
+</body>
+
+</html>

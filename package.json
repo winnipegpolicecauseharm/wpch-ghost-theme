@@ -1,0 +1,36 @@
+{
+  "name": "wpch",
+  "description": "A custom Ghost theme",
+  "version": "0.0.1",
+  "engines": {
+    "ghost": ">=3.0.0",
+    "ghost-api": "v3"
+  },
+  "license": "gpl-3.0",
+  "author": {
+    "name": "Geekinsta",
+    "email": "admin@geekinsta.com",
+    "url": "https://www.geekinsta.com"
+  },
+  "gpm": {
+    "type": "theme",
+    "categories": [
+      "Minimal",
+      "Magazine",
+      "Blog"
+    ]
+  },
+  "keywords": [
+    "ghost",
+    "theme",
+    "ghost-theme",
+    "Geekinsta"
+  ],
+  "config": {
+    "posts_per_page": 3,
+    "image_sizes": {}
+  },
+  "devDependencies": {
+    "gulp": "^4.0.2"
+  }
+}
