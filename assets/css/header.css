@@ -116,7 +116,7 @@
     box-shadow: 0 19px 38px rgba(0, 0, 0, 0.3), 0 15px 12px rgba(0, 0, 0, 0.22);
 }
 
-.nav-donate a {
+.header nav ul.nav .nav-donate a {
     margin-right: 0px;
     display: inline-block;
     font-size: 25px;
