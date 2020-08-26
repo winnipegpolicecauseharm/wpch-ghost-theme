@@ -116,7 +116,7 @@
     box-shadow: 0 19px 38px rgba(0, 0, 0, 0.3), 0 15px 12px rgba(0, 0, 0, 0.22);
 }
 
-.donate-button {
+.nav-donate a {
     margin-right: 0px;
     display: inline-block;
     font-size: 25px;
@@ -131,7 +131,7 @@
 }
 
 @media screen and (min-width: 768px) {
-    .donate-button {
+    .nav-donate a {
         margin-right: 50px;
         font-size: 25px;
     }
@@ -213,11 +213,17 @@
     }
 }
 
-.nav-hover {
+.header nav ul.nav {
+  display: flex;
+  align-items: center;
+  text-transform: uppercase;
+}
+
+.header nav ul.nav a {
   /*font-size: 36px;*/
   /*font-weight: bold;*/
   text-decoration: none;
-  color: black;
+  color: white;
   background-image: -webkit-gradient(linear, left top, left bottom, color-stop(65%, transparent), color-stop(0, #fcf113));
   background-image: linear-gradient(180deg, transparent 65%, white 0);
   background-repeat: no-repeat;
@@ -226,15 +232,15 @@
   transition: background-size .2s ease;
 }
 
-.nav-hover:hover {
+.header nav ul.nav a:hover {
   background-size: 100% 130%;
 }
 
-.nav-current {
+.header nav ul.nav .nav-current a {
   /*font-size: 36px;*/
   /*font-weight: bold;*/
   text-decoration: none;
-  color: black;
+  color: white;
   background-image: -webkit-gradient(linear, left top, left bottom, color-stop(65%, transparent), color-stop(0, #fcf113));
   background-image: linear-gradient(180deg, transparent 65%, white 0);
   background-repeat: no-repeat;
