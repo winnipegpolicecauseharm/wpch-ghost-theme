@@ -36,20 +36,7 @@
 <body class="{{body_class}}">
 
 
-    {{!-- Navigation bar --}}
-    <header class="header" style="background-color: rgba(34,34,34,0.9);
-    box-shadow: 0 19px 38px rgba(0,0,0,0.30), 0 15px 12px rgba(0,0,0,0.22); margin-bottom: 50px;">
-            <nav>
-                 <a href="/"> {{> logo}} </a> <input class="menu-btn" type="checkbox" id="menu-btn" /> <label class="menu-icon" for="menu-btn"><span class="navicon"></span></label> 
-                <ul class="menu">
-                    <li><a class="nav-hover" href="/#mission">MISSION</a></li>
-                    <li><a class="nav-hover" href="/resources">RESOURCES</a></li>
-                    <li><a class="nav-hover" href="/blog">BLOG</a></li>
-                    <li><a class="nav-current" href="/contact">CONTACT</a></li>
-                    <li> <a href="/donate"><button type="button" class="donate-button">DONATE</button> </a></li>
-                </ul>
-            </nav>
-        </header>
+    {{> nav}}
 
         
     <div class="hero">
