@@ -241,6 +241,10 @@
   background-size: 100% 130%;
 }
 
+.header nav ul.nav .nav-donate a:hover {
+  background-size: 0 130%;
+}
+
 .header nav ul.nav .nav-current a {
   /*font-size: 36px;*/
   /*font-weight: bold;*/
