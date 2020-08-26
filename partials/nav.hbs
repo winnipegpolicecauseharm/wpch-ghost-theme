@@ -3,12 +3,8 @@
         {{!-- FIXME the inline style is only meant for blog, contact, donate --}}
             <nav>
                 <a href="/"> {{> logo}} </a> <input class="menu-btn" type="checkbox" id="menu-btn" /> <label class="menu-icon" for="menu-btn"><span class="navicon"></span></label> 
-                <ul class="menu">
-                    <li><a class="nav-hover" href="/#mission" >MISSION</a></li>
-                    <li><a class="nav-hover" href="/resources">RESOURCES</a></li>
-                    <li><a class="nav-hover" href="/blog">BLOG</a></li>
-                    <li><a class="nav-hover" href="/contact">CONTACT</a></li>
-                    <li> <a href="/donate"><button type="button" class="donate-button">DONATE</button> </a></li>
-                </ul>
+                {{#if @site.navigation}}
+                    {{navigation}}
+                {{/if}}
             </nav>
         </header>
