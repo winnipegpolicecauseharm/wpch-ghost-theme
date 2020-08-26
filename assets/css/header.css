@@ -199,6 +199,9 @@
     .header .nav {
         max-height: 0;
     }
+    .header .nav li {
+        width: 100%;
+    }
     .header .menu-btn:checked ~ .nav {
         clear: both;
         text-align: center;
