@@ -43,6 +43,8 @@ jobs:
         run: rm -rf themenamehere/.git
       - name: mv theme
         run: mv themenamehere ghost-on-heroku/content/themes
+      - name: copy content overrides
+        run: cp -Rv ghost-on-heroku/content/themes/themenamehere/.content-overrides/* ghost-on-heroku/content
       - name: hack .gitignore
         working-directory: ghost-on-heroku
         run: sed -i 's/content\/themes\/\*//' .gitignore
