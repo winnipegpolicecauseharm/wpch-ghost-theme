@@ -1,0 +1,17 @@
+# For preview deployment only… maybe?
+routes:
+  /:
+    data: page.home
+    template: home
+
+collections:
+  /blog/:
+    permalink: /blog/{slug}/
+    template: index
+  /:
+    permalink: /{slug}/
+    template: home
+
+taxonomies:
+  tag: /tag/{slug}/
+  author: /author/{slug}/

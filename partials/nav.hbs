@@ -1,0 +1,16 @@
+<header class="header">
+  <nav>
+    <a href="/">
+      <img class="header-logo" src="{{asset "images/logo.png"}}" />
+    </a>
+
+    <input class="menu-btn" type="checkbox" id="menu-btn" />
+    <label class="menu-icon" for="menu-btn">
+      <span class="navicon"></span>
+    </label>
+
+    {{#if @site.navigation}}
+      {{navigation}}
+    {{/if}}
+  </nav>
+</header>
