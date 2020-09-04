@@ -17,27 +17,29 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - name: Set branch name as PR_BRANCH_NAME
         run: echo ::set-env name=PR_BRANCH_NAME::${BRANCH_NAME}
+      - name: Store Heroku app name
+        run: echo ::set-env name=APP_NAME::`echo ghostprev-${PR_BRANCH_NAME} | cut -c 1-30`
       - name: install fork plugin
         run: heroku plugins:install heroku-fork
         if: ${{ github.event.action == 'opened' }}
       - name: create forked application
         env:
           HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }}
-        run: heroku fork --from ghost-theme-sandbox-base --to ghostprev-${PR_BRANCH_NAME}
+        run: heroku fork --from ghost-theme-sandbox-base --to $APP_NAME
         if: ${{ github.event.action == 'opened' }}
       - name: replace database and set URL
         env:
           HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }}
         run: |
           heroku config:get JAWSDB_URL -a ghost-theme-sandbox-base > base.url
-          heroku config:get JAWSDB_URL -a ghostprev-$PR_BRANCH_NAME > pr.url
+          heroku config:get JAWSDB_URL -a $APP_NAME > pr.url
           node -e 'const u = new URL(process.argv[1]); console.log(`mysqldump -h ${u.hostname} -u ${u.username} -p${u.password} ${u.pathname.substring(1)} --set-gtid-purged=OFF`)' `cat base.url` > dump.sh
           bash dump.sh > base.sql
           sed -i 's/casper/themenamehere/' base.sql
           node -e 'const u = new URL(process.argv[1]); console.log(`mysql -h ${u.hostname} -u ${u.username} -p${u.password} ${u.pathname.substring(1)}`)' `cat pr.url` > import.sh
           bash import.sh < base.sql
           echo "done?"
-          heroku config:set APP_PUBLIC_URL=https://ghostprev-$PR_BRANCH_NAME.herokuapp.com -a ghostprev-$PR_BRANCH_NAME
+          heroku config:set APP_PUBLIC_URL=https://$APP_NAME.herokuapp.com -a $APP_NAME
         if: ${{ github.event.action == 'opened' }}
       - name: degit theme
         run: rm -rf themenamehere/.git
@@ -55,7 +57,7 @@ jobs:
           known_hosts: ${{ secrets.HEROKU_KNOWN_HOSTS }}
       - name: add heroku remote
         working-directory: ghost-on-heroku
-        run: git remote add heroku git@heroku.com:ghostprev-${PR_BRANCH_NAME}.git
+        run: git remote add heroku git@heroku.com:$APP_NAME.git
       - name: configure git
         run: git config --global user.email "bot@chromatin.ca" && git config --global user.name "Chromatin Bot"
       - name: add and commit changes
@@ -75,4 +77,4 @@ jobs:
             -H "Authorization: token $GITHUB_TOKEN" \
             -H "Accept: application/vnd.github.v3+json" \
             https://api.github.com/repos/$REPOSITORY/statuses/$HEAD_SHA \
-            -d '{"context":"Preview","description":"Ghost deployment with this theme","target_url":"https://ghostprev-'"$PR_BRANCH_NAME"'.herokuapp.com","state":"success"}'
+            -d '{"context":"Preview","description":"Ghost deployment with this theme","target_url":"https://'"$APP_NAME"'.herokuapp.com","state":"success"}'

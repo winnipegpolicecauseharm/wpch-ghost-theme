@@ -31,9 +31,12 @@
     "image_sizes": {}
   },
   "devDependencies": {
+    "gscan": "^3.5.6",
     "gulp": "^4.0.2"
   },
   "scripts": {
-    "action-version": "npm version prerelease --preid=\"${PR_BRANCH_NAME}\" --no-git-tag-version"
+    "action-version": "npm version prerelease --preid=\"${PR_BRANCH_NAME}\" --no-git-tag-version",
+    "test": "gscan .",
+    "test:ci": "gscan --fatal --verbose ."
   }
 }
