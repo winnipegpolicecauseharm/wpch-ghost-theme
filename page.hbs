@@ -38,16 +38,20 @@
 
     {{> nav}}
 
+    {{#post}}
         
     <div id="mission" class="section-1">
 
-        <div data-aos="fade-up" class="text-heading" > <h2 style="margin-top: 100px;">Donate</h2></div>
-        <div data-aos="fade-up" class="text-mission"> <p class="e-transfer"> Every dollar helps. Donations go to paying for the costs of printing posters and pamphlets, paying honorariums to speakers and designers, and helping with costs incurred by families and loved ones of people killed by police.</p>
-
-        <p data-aos="fade-up" style="text-align:center;" class="e-transfer"> E-transfers can be sent to wpgpolicecauseharm@gmail.com </p>
+        <div data-aos="fade-up" class="text-heading" > <h2 style="margin-top: 100px;">{{title}}</h2></div>
+        <div data-aos="fade-up" class="text-mission">
+            <div class="our-mission">
+                {{content}}
+            </div>
         </div>
         
     </div>
+
+    {{/post}}
 
         <footer>
             <div class="footer-items">
