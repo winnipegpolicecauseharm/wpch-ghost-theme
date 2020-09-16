@@ -2,6 +2,10 @@
 
 Created by @FarfamaH for [winnipegpolicecauseharm.org](https://winnipegpolicecauseharm.org).
 
+## Deploying the theme
+
+A push to the `production` branch will deploy the theme to the site.
+
 ## Preview deployment workflows
 
 For ease of review, a preview deployment is created for every pull request on this repository. It’s forked from the base Heroku application [`ghost-theme-sandbox`](https://ghost-theme-sandbox.herokuapp.com/) with an overridden theme from the content of the PR. When the preview workflow has completed, it adds a check with a link to the deployment.
