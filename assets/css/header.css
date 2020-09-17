@@ -248,6 +248,7 @@
   background-size: 0 130%;
   -webkit-transition: background-size .2s ease;
   transition: background-size .2s ease;
+  padding-bottom: 10px;
 }
 
 .header nav ul.nav a:hover {
@@ -263,9 +264,16 @@
   background-image: linear-gradient(180deg, transparent 65%, white 0);
   background-repeat: no-repeat;
   background-size: 100% 130%;
+  padding-bottom: 10px;
 }
+
+header nav ul.nav .nav-donate a:hover, .header nav ul.nav .nav-donate {
+ padding-bottom: 0px;
+    }
 
 .header nav ul.nav .nav-donate a:hover, .header nav ul.nav .nav-donate.nav-current a {
     background-size: 0 130%;
+    padding-bottom: 0px;
+}
   }
   
