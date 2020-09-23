@@ -1,4 +1,4 @@
-name: Preview theme
+name: Deploy theme PR preview
 on:
   pull_request:
     branches-ignore:
@@ -22,10 +22,18 @@ jobs:
       - uses: igordcsouza/github-action-get-branch-name@ecf5862
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        if: ${{ github.event_name == 'pull_request' }}
       - name: Set branch name as PR_BRANCH_NAME
         run: echo ::set-env name=PR_BRANCH_NAME::${BRANCH_NAME}
-      - name: Store Heroku app name
+        if: ${{ github.event_name == 'pull_request' }}
+
+      - name: Store Heroku app name from PR branch
         run: echo ::set-env name=APP_NAME::`echo ghostprev-${PR_BRANCH_NAME} | cut -c 1-30`
+        if: ${{ github.event_name == 'pull_request' }}
+      - name: Store sandbox base Heroku app name
+        run: echo ::set-env name=APP_NAME::`echo ghostprev-ghost-base`
+        if: ${{ github.event_name == 'push' }}
+
       - name: install fork plugin
         run: heroku plugins:install heroku-fork
         if: ${{ github.event.action == 'opened' }}
@@ -48,6 +56,7 @@ jobs:
           echo "done?"
           heroku config:set APP_PUBLIC_URL=https://$APP_NAME.herokuapp.com -a $APP_NAME
         if: ${{ github.event.action == 'opened' }}
+
       - name: degit theme
         run: rm -rf themenamehere/.git
       - name: mv theme
@@ -57,6 +66,7 @@ jobs:
       - name: hack .gitignore
         working-directory: ghost-on-heroku
         run: sed -i 's/content\/themes\/\*//' .gitignore
+
       - name: install Heroku SSH key
         uses: shimataro/ssh-key-action@v2
         with:
@@ -64,7 +74,7 @@ jobs:
           known_hosts: ${{ secrets.HEROKU_KNOWN_HOSTS }}
       - name: add heroku remote
         working-directory: ghost-on-heroku
-        run: git remote add heroku git@heroku.com:$APP_NAME.git
+        run: git remote add heroku git@heroku.com:${APP_NAME}.git
       - name: configure git
         run: git config --global user.email "bot@chromatin.ca" && git config --global user.name "Chromatin Bot"
       - name: add and commit changes
@@ -73,7 +83,9 @@ jobs:
       - name: push to heroku
         working-directory: ghost-on-heroku
         run: git push -f heroku master
+
       - name: add URL check
+        if: ${{ github.event_name == 'pull_request' }}
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           REPOSITORY: ${{ github.repository }}
