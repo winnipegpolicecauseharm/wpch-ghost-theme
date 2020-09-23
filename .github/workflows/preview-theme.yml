@@ -31,7 +31,7 @@ jobs:
         run: echo ::set-env name=APP_NAME::`echo ghostprev-${PR_BRANCH_NAME} | cut -c 1-30`
         if: ${{ github.event_name == 'pull_request' }}
       - name: Store sandbox base Heroku app name
-        run: echo ::set-env name=APP_NAME::`echo ghostprev-ghost-base`
+        run: echo ::set-env name=APP_NAME::`echo ghost-theme-sandbox-base`
         if: ${{ github.event_name == 'push' }}
 
       - name: install fork plugin
