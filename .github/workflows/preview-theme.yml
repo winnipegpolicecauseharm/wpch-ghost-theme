@@ -1,5 +1,12 @@
 name: Preview theme
-on: pull_request
+on:
+  pull_request:
+    branches-ignore:
+      - production
+  push:
+    branches:
+      - main
+
 jobs:
   preview:
     runs-on: ubuntu-18.04
