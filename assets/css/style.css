@@ -889,6 +889,8 @@ color:white !important;
     margin-top: 50px;
     font-size:40px;
     color:white;
+    background: black;
+    padding: 0.25rem 1rem;
 }
 
 @media screen and (max-width: 600px) {
