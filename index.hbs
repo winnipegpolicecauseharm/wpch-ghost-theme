@@ -11,7 +11,7 @@ into the {body} of the default.hbs template --}}
             {{#foreach posts}}
 
             <a class="text-dark" href="{{url}}">
-            <article data-aos="fade-up" class="{{post_class}} blog-card grow">
+            <article data-aos="fade-up" class="{{post_class}} blog-card grow" style="width:50rem">
                 <div class="card-body">
 
                     {{!-- Display primary tag of the post if exists--}}
@@ -22,10 +22,15 @@ into the {body} of the default.hbs template --}}
                     {{/if}} --}}
 
                     
-                        {{!-- Post title --}}
-                        <div class="text-heading"> <h3>{{title}}</h3> </div>
-                    
-
+                    {{!-- Post title --}}
+                    <div class="text-heading"> <h3>{{title}}</h3> </div>
+                        
+                    {{!-- Displays featured image if it exists.--}}
+                    {{#if feature_image}}
+                            <img src={{feature_image}} />
+                    {{/if}}
+                    <br>
+   
                     {{!-- Displays post excerpt. Sets to display max 170 chars if not set --}}
                     <p>{{excerpt characters="170"}}</p>
 
