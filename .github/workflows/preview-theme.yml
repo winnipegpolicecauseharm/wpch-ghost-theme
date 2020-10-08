@@ -24,14 +24,14 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         if: ${{ github.event_name == 'pull_request' }}
       - name: Set branch name as PR_BRANCH_NAME
-        run: echo ::set-env name=PR_BRANCH_NAME::${BRANCH_NAME}
+        run: echo "PR_BRANCH_NAME=${BRANCH_NAME}" >> $GITHUB_ENV
         if: ${{ github.event_name == 'pull_request' }}
 
       - name: Store Heroku app name from PR branch
-        run: echo ::set-env name=APP_NAME::`echo ghostprev-${PR_BRANCH_NAME} | cut -c 1-30`
+        run: echo "APP_NAME=`echo ghostprev-${PR_BRANCH_NAME} | cut -c 1-30`" >> $GITHUB_ENV
         if: ${{ github.event_name == 'pull_request' }}
       - name: Store sandbox base Heroku app name
-        run: echo ::set-env name=APP_NAME::`echo ghost-theme-sandbox-base`
+        run: echo "APP_NAME=`echo ghost-theme-sandbox-base`" >> $GITHUB_ENV
         if: ${{ github.event_name == 'push' }}
 
       - name: install fork plugin
