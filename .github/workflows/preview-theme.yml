@@ -28,7 +28,7 @@ jobs:
         if: ${{ github.event_name == 'pull_request' }}
 
       - name: Store Heroku app name from PR branch
-        run: echo "APP_NAME=`echo ghostprev-${PR_BRANCH_NAME} | cut -c 1-30`" >> $GITHUB_ENV
+        run: echo "APP_NAME=`echo ghostprev-${PR_BRANCH_NAME} | cut -c 1-30 | tr _ - | tr '[:upper:]' '[:lower:]' | sed -e 's/-$//' | sed -e 's/[^a-z0-9\-]//g'`" >> $GITHUB_ENV
         if: ${{ github.event_name == 'pull_request' }}
       - name: Store sandbox base Heroku app name
         run: echo "APP_NAME=`echo ghost-theme-sandbox-base`" >> $GITHUB_ENV
