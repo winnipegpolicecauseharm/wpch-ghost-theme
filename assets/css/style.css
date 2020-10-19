@@ -955,7 +955,7 @@ button:focus {
     outline: none;
 }
 
-@media (min-width: 768px) {
+@media (min-width: 1200px) {
 .mt-5 {
 
     width: 60%;
