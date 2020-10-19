@@ -955,3 +955,13 @@ button:focus {
     outline: none;
 }
 
+@media (min-width: 1200px) {
+.mt-5 {
+
+    width: 60%;
+    margin-left: 20%;
+
+}
+}
+
+
