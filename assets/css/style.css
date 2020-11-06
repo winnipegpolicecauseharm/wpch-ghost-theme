@@ -194,6 +194,7 @@ h4,
 h5,
 h6,
 p,
+blockquote,
 button,
 pre,
 a,
@@ -513,39 +514,6 @@ hr {
     height: 1px;
     opacity: 0.8;
     padding-bottom: 100px;
-}
-
-blockquote{
-  font-size: 1em;
-  width:100%;
-  margin:50px auto;
-  font-style:italic;
-  color: #555555;
-  padding:1em;
-  border-left:8px solid #DE3545 ;
-  line-height:1.6;
-  position: relative;
-  background:#EDEDED;
-}
-
-blockquote::before{
-  color:#DE3545;
-  font-size:4em;
-  position: absolute;
-  left: 10px;
-  top:-10px;
-}
-
-blockquote::after{
-  content: '';
-}
-
-.post-content a{
-    color:#DE3545;
-}
-
-.post-content a:hover{
-    text-decoration: underline;
 }
 
 .center-content {
@@ -998,7 +966,12 @@ color:white !important;
 
 }
 
+.text-body-20px {
+    padding: 100px;
+    font-size:20px;
+    font-family: 'Open Sans', sans-serif;
 
+}
 
 @media screen and (max-width: 600px) {
     .text-body{
