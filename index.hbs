@@ -2,6 +2,19 @@
 {{!-- The tag above means: insert everything in this file
 into the {body} of the default.hbs template --}}
 
+<div data-aos="fade-up"> <div class="text-body"> {{#page}} {{content}} {{/page}} </div></div>
+
+<div id="mission" data-aos="fade-up">
+
+        <div class="text-heading" > <h2> BLOG </h2> </div>
+        <section class="mt-5">
+                <div class="text-body">
+                    {{!-- Display the post content --}}
+                    {{#page}} {{content}} {{/page}}
+                </div>
+            </section>
+    </div>
+
 {{!-- The main content area --}}
 <main id="site-main">
     <div class="blog-container">
@@ -11,7 +24,7 @@ into the {body} of the default.hbs template --}}
             {{#foreach posts}}
 
             <a class="text-dark" href="{{url}}">
-            <article data-aos="fade-up" class="{{post_class}} blog-card grow">
+            <article data-aos="fade-up" class="{{post_class}} blog-card grow" >
                 <div class="card-body">
 
                     {{!-- Display primary tag of the post if exists--}}
