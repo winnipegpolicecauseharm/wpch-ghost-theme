@@ -25,6 +25,8 @@
     {{!-- Animate On Scroll Library --}}
     <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
 
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans&family=Roboto:ital,wght@1,500&display=swap" rel="stylesheet">
+
 
 
     {{!-- Dynamic header content for SEO, meta tags, code injection etc --}}
@@ -36,32 +38,72 @@
 
     {{> nav}}
 
-        <div class="hero">
-            <div class="text-heading">
-            <img class="hero-logo" src="{{asset "images/logo.png"}}" width="300" height="300">
-            <h2>DEFUND THE POLICE</h2>
-           <div class="hero-social-media">
+<br>
+<br>
+<br>
 
-            <img  src="{{asset "images/facebook.png"}}" width="50" height="50">
-            <img  src="{{asset "images/instagram.png"}}" width="50" height="50">
-            <img  src="{{asset "images/twitter.png"}}" width="50" height="50">
+<div id="mission" data-aos="fade-up">
 
+        <div class="text-heading" > <h2> BLOG </h2> </div>
+                <div class="text-body">
+                    {{!-- Display the post content --}}
+                    {{#page}} {{content}} {{/page}}
+                </div>
+    </div>
 
-            </div>
+<main id="site-main" class="remove-padding">
+    <div class="blog-flex-col">
+
+        <div class="p-5">
+            {{!-- Iterate through each posts --}}
+            {{#get "posts"}}
+            {{!-- Iterate through each posts --}}
+            {{#foreach posts}}
+
+            <a class="text-dark" href="{{url}}">
+            <article class="{{post_class}} blog-card grow flex-col" data-aos="fade-up">
+                <div class="card-body">
+
+                    {{!-- Display primary tag of the post if exists--}}
+                    {{!-- {{#if primary_tag}}
+                    <a href="{{primary_tag.url}}" class="badge badge-success">
+                        {{primary_tag.name}}
+                    </a>
+                    {{/if}} --}}
+
+                    
+                        {{!-- Post title --}}
+                        <div class="text-heading"> <h3>{{title}}</h3> </div>
+                    
+                    {{!-- Displays featured image if it exists.--}}
+                    {{#if feature_image}}
+                            <img src={{feature_image}} />
+                    {{/if}}
+                    <br>
+                    
+                    {{!-- Displays post excerpt. Sets to display max 170 chars if not set --}}
+                    <p>{{excerpt characters="170"}}</p>
+
+                    <div>
+                        <span class="reading-time">{{reading_time}}</span>
+                        <span> - Published: {{date published_at timeago="true"}}</span>
+                    </div>
+
+                </div>{{!--/.post-card-content--}}
             
-            <!--<section><h3>Recent posts from the blog</h3><ul><li> <a href="/blog/the-most-recent-post-so-far">The most recent post so far</a></li><li> <a href="/blog/a-simple-post">A simple blog post</a></li><li> <a href="/blog/another-post">Another post</a></li></ul></section>-->
+            </article>
+            </a>
+
+            {{/foreach}}
+            {{/get}}
         </div>
-    </div>
-    <div class="section-1">
 
-        <div class="text-heading" > <h2>OUR MISSION</h2></div>
-        <div class="text-mission"> <p> Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Aliquam malesuada bibendum arcu vitae. Velit aliquet sagittis id consectetur purus ut faucibus pulvinar. Aenean pharetra magna ac placerat vestibulum. Rhoncus mattis rhoncus urna neque. Donec enim diam vulputate ut pharetra sit amet. Enim tortor at auctor urna nunc id. Sagittis purus sit amet volutpat consequat mauris nunc congue. Consequat ac felis donec et odio pellentesque diam. Vel facilisis volutpat est velit. Curabitur vitae nunc sed velit dignissim. Magna fermentum iaculis eu non diam phasellus. Molestie nunc non blandit massa enim nec dui. At in tellus integer feugiat scelerisque varius. Eget mauris pharetra et ultrices neque. Malesuada proin libero nunc consequat interdum varius sit. At imperdiet dui accumsan sit amet nulla. Ante metus dictum at tempor commodo ullamcorper a lacus vestibulum. Morbi leo urna molestie at elementum eu facilisis sed odio.</p></div>
-        
-    </div>
-    {{!-- End Navbar --}}
 
-    {{!-- All the main content gets inserted here, index.hbs, post.hbs, etc --}}
-    {{{body}}}
+
+    </div>
+
+
+</main>
 
     <footer>
             <div class="footer-items">

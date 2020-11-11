@@ -194,7 +194,6 @@ h4,
 h5,
 h6,
 p,
-blockquote,
 button,
 pre,
 a,
@@ -510,6 +509,45 @@ html[data-current="contact"] main > form button {
     }
 }
 
+hr {
+    height: 1px;
+    opacity: 0.8;
+    padding-bottom: 100px;
+}
+
+blockquote{
+  font-size: 1em;
+  width:100%;
+  margin:50px auto;
+  font-style:italic;
+  color: #555555;
+  padding:1em;
+  border-left:8px solid #DE3545 ;
+  line-height:1.6;
+  position: relative;
+  background:#EDEDED;
+}
+
+blockquote::before{
+  color:#DE3545;
+  font-size:4em;
+  position: absolute;
+  left: 10px;
+  top:-10px;
+}
+
+blockquote::after{
+  content: '';
+}
+
+.post-content a{
+    color:#DE3545;
+}
+
+.post-content a:hover{
+    text-decoration: underline;
+}
+
 .center-content {
     width: 400px;
     display: flex;
@@ -518,11 +556,11 @@ html[data-current="contact"] main > form button {
     margin: auto;
 }
 .text-heading {
-    text-transform: uppercase;
     font-size: 3em;
     margin-bottom: 0;
     text-align: center;
 }
+
 .text-heading h2 {
     box-shadow: 0 19px 38px rgba(0, 0, 0, 0.3), 0 15px 12px rgba(0, 0, 0, 0.22);
     color: white;
@@ -538,6 +576,17 @@ html[data-current="contact"] main > form button {
     font-style: italic;
     font-size: 3rem;
     font-family: 'Roboto', sans-serif;
+    margin-top: 100px;
+    margin-bottom: 100px;
+}
+
+.home-text-heading h2 {
+    margin-top: 0px;
+    margin-bottom: 0px;
+}
+
+.mission-text-heading h2 {
+    margin-top: 0px;
 }
 
 .text-heading h3 {
@@ -782,6 +831,9 @@ border:2px solid #000000;
 }
 }
 
+.remove-padding {
+    padding: 0px;
+}
 
 
 .grow2:hover { 
@@ -880,7 +932,22 @@ color:white !important;
     .blog-flex-row { 
         flex-direction: column;
         align-items: center;
-        margin-top: 100px;
+
+}
+}
+
+.blog-flex-col {
+  display: flex ;
+  flex-direction: column;
+  justify-content: space-evenly;
+  /*flex-wrap: wrap;*/
+  width: 100%;
+}
+
+@media screen and (max-width: 768px) {
+    .blog-flex-col { 
+        flex-direction: column;
+        align-items: center;
 
 }
 }
@@ -892,6 +959,7 @@ color:white !important;
     background: black;
     padding: 0.25rem 1rem;
 }
+
 
 @media screen and (max-width: 600px) {
     .email{
@@ -916,20 +984,30 @@ color:white !important;
     }
 }
 
+.word-wrap {
+    word-wrap: break-word;
+}
+
 .text-body {
     padding: 100px;
-    font-size:40px;
+    padding-top: 0px;
+    font-size:35px;
     text-align: center;
     font-family: 'Open Sans', sans-serif;
+    word-wrap: break-word;
 
 }
+
+
 
 @media screen and (max-width: 600px) {
     .text-body{
         padding: 50px;
+        padding-top: 0px;
         font-size:20px;
         text-align: center;
         font-family: 'Open Sans', sans-serif;
+        word-wrap: break-word;
 
     }
 }
