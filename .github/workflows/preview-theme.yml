@@ -115,7 +115,7 @@ jobs:
       - name: Install dependencies
         run: npm install
       - name: Retrieve and store Heroku host
-        run: echo "HEROKU_APP_HOST=${{needs.preview.outputs.host}}" >> $GITHUB_ENV
+        run: echo "HEROKU_APP_HOST=${{needs.preview.outputs.heroku-app-host}}" >> $GITHUB_ENV
       - name: Percy Test
         uses: percy/exec-action@v0.3.1
         with:
