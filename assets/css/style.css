@@ -194,7 +194,6 @@ h4,
 h5,
 h6,
 p,
-blockquote,
 button,
 pre,
 a,
@@ -514,6 +513,41 @@ hr {
     height: 1px;
     opacity: 0.8;
     padding-bottom: 100px;
+}
+
+blockquote{
+  font-size: 1em;
+  width:100%;
+  margin:50px auto;
+  font-family:Open Sans;
+  font-style:italic;
+  color: #555555;
+  padding:1em;
+  border-left:8px solid #DE3545 ;
+  line-height:1.6;
+  position: relative;
+  background:#EDEDED;
+}
+
+blockquote::before{
+  font-family:Arial;
+  color:#DE3545;
+  font-size:4em;
+  position: absolute;
+  left: 10px;
+  top:-10px;
+}
+
+blockquote::after{
+  content: '';
+}
+
+.post-content a{
+    color:#DE3545;
+}
+
+.post-content a:hover{
+    text-decoration: underline;
 }
 
 .center-content {
