@@ -19,7 +19,7 @@ jobs:
           repository: SNathJr/ghost-on-heroku
           path: ghost-on-heroku
           fetch-depth: 0 # FIXME https://devcenter.heroku.com/changelog-items/775
-      - uses: igordcsouza/github-action-get-branch-name@ecf5862
+      - uses: winnipegpolicecauseharm/github-action-get-branch-name@9fb2f09
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         if: ${{ github.event_name == 'pull_request' }}

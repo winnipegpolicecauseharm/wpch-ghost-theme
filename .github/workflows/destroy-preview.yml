@@ -6,7 +6,7 @@ jobs:
   destroy:
     runs-on: ubuntu-18.04
     steps:
-      - uses: igordcsouza/github-action-get-branch-name@ecf5862
+      - uses: winnipegpolicecauseharm/github-action-get-branch-name@9fb2f09
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - name: Set branch name as PR_BRANCH_NAME
