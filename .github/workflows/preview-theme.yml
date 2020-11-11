@@ -119,6 +119,6 @@ jobs:
       - name: Percy Test
         uses: percy/exec-action@v0.3.1
         with:
-          command: "node .github/percy-snapshots.js $HEROKU_APP_HOST"
+          command: "node .github/percy-snapshots.js"
         env:
           PERCY_TOKEN: ${{ secrets.PERCY_TOKEN }}
