@@ -108,6 +108,12 @@ jobs:
     runs-on: ubuntu-18.04
     steps:
       - uses: actions/checkout@v2
+      - name: Use Node.js
+        uses: actions/setup-node@v1
+        with:
+          node-version: '14.x'
+      - name: Install dependencies
+        run: npm install
       - name: Retrieve and store Heroku host
         run: echo "HEROKU_APP_HOST=${{needs.preview.outputs.host}}" >> $GITHUB_ENV
       - name: Percy Test
