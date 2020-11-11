@@ -107,6 +107,7 @@ jobs:
     needs: preview
     runs-on: ubuntu-18.04
     steps:
+      - uses: actions/checkout@v2
       - name: Retrieve and store Heroku host
         run: echo "HEROKU_APP_HOST=${{needs.preview.outputs.host}}" >> $GITHUB_ENV
       - name: Percy Test
