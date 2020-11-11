@@ -519,7 +519,6 @@ blockquote{
   font-size: 1em;
   width:100%;
   margin:50px auto;
-  font-family:Open Sans;
   font-style:italic;
   color: #555555;
   padding:1em;
@@ -530,7 +529,6 @@ blockquote{
 }
 
 blockquote::before{
-  font-family:Arial;
   color:#DE3545;
   font-size:4em;
   position: absolute;
@@ -1000,12 +998,7 @@ color:white !important;
 
 }
 
-.text-body-20px {
-    padding: 100px;
-    font-size:20px;
-    font-family: 'Open Sans', sans-serif;
 
-}
 
 @media screen and (max-width: 600px) {
     .text-body{
