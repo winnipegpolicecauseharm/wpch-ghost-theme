@@ -110,7 +110,7 @@ jobs:
       - name: Retrieve and store Heroku host
         run: echo "HEROKU_APP_HOST=${{needs.preview.outputs.host}}" >> $GITHUB_ENV
       - name: Percy Test
-        uses: percy/exec-action@v0.3.0
+        uses: percy/exec-action@v0.3.1
         with:
           command: "node .github/percy-snapshots.js $HEROKU_APP_HOST"
         env:
