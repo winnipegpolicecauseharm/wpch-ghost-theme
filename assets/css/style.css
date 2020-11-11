@@ -634,12 +634,18 @@ article img {
     margin-right: -50vw;
 }
 
+article > figure {
+    display: flex;
+    justify-content: center;
+}
+
 article figure {
     margin: 0;
 }
 
 article figcaption {
     text-align: center;
+    font-size: 75%;
 }
 
 body {
