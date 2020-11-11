@@ -1,6 +1,7 @@
 const PercyScript = require('@percy/script');
 
 const HOST = process.argv[2] || 'https://ghost-theme-sandbox-base.herokuapp.com/';
+console.log(`Collecting Percy snapshots from host ${HOST}…`);
 
 PercyScript.run(async (page, percySnapshot) => {
     await page.goto(`${HOST}`);
