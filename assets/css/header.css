@@ -131,8 +131,8 @@
     font-style: italic;
     line-height: 1.5;
     color: #fff;
-    background-color: red;
-    border: 3px solid red;
+    background-color: green;
+    border: 3px solid green;
 }
 
 @media screen and (min-width: 768px) {
