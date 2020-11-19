@@ -15,3 +15,8 @@ Since `data/redirects.json` and `settings/routes.yaml` don’t persist on Heroku
 Closing the PR will destroy the Heroku application.
 
 Future improvement: forking the actual deployed site instead of a sandbox base so theme changes can be inspected with more-representative content.
+
+## Visual diffs with Percy
+
+Also for ease of review, after a preview deployment has been created, the `.github/percy-snapshots.js` script runs
+against it to generate visual diffs of a few routes, using [Percy](https://percy.io).

@@ -1,4 +1,4 @@
-name: Deploy theme PR preview
+name: Deploy theme PR preview and generate Percy build
 on:
   pull_request:
     branches-ignore:
@@ -10,6 +10,8 @@ on:
 jobs:
   preview:
     runs-on: ubuntu-18.04
+    outputs:
+      heroku-app-host: ${{ steps.heroku-app-host.outputs.host }}
     steps:
       - uses: actions/checkout@v2
         with:
@@ -42,6 +44,10 @@ jobs:
           HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }}
         run: heroku fork --from ghost-theme-sandbox-base --to $APP_NAME
         if: ${{ github.event.action == 'opened' }}
+      - name: Store Heroku host
+        run: echo "HEROKU_APP_HOST=https://$APP_NAME.herokuapp.com/" >> $GITHUB_ENV
+      - id: heroku-app-host
+        run: echo "::set-output name=host::$HEROKU_APP_HOST"
       - name: replace database and set URL
         env:
           HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }}
@@ -54,7 +60,7 @@ jobs:
           node -e 'const u = new URL(process.argv[1]); console.log(`mysql -h ${u.hostname} -u ${u.username} -p${u.password} ${u.pathname.substring(1)}`)' `cat pr.url` > import.sh
           bash import.sh < base.sql
           echo "done?"
-          heroku config:set APP_PUBLIC_URL=https://$APP_NAME.herokuapp.com -a $APP_NAME
+          heroku config:set APP_PUBLIC_URL=$HEROKU_APP_HOST -a $APP_NAME
         if: ${{ github.event.action == 'opened' }}
 
       - name: degit theme
@@ -96,4 +102,23 @@ jobs:
             -H "Authorization: token $GITHUB_TOKEN" \
             -H "Accept: application/vnd.github.v3+json" \
             https://api.github.com/repos/$REPOSITORY/statuses/$HEAD_SHA \
-            -d '{"context":"Preview","description":"Ghost deployment with this theme","target_url":"https://'"$APP_NAME"'.herokuapp.com","state":"success"}'
+            -d '{"context":"Preview","description":"Ghost deployment with this theme","target_url":"'"$HEROKU_APP_HOST"'","state":"success"}'
+  percy:
+    needs: preview
+    runs-on: ubuntu-18.04
+    steps:
+      - uses: actions/checkout@v2
+      - name: Use Node.js
+        uses: actions/setup-node@v1
+        with:
+          node-version: '14.x'
+      - name: Install dependencies
+        run: npm install
+      - name: Retrieve and store Heroku host
+        run: echo "HEROKU_APP_HOST=${{needs.preview.outputs.heroku-app-host}}" >> $GITHUB_ENV
+      - name: Percy Test
+        uses: percy/exec-action@v0.3.1
+        with:
+          command: "node .github/percy-snapshots.js"
+        env:
+          PERCY_TOKEN: ${{ secrets.PERCY_TOKEN }}
