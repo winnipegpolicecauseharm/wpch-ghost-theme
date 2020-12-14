@@ -42,6 +42,516 @@ into the {body} of the default.hbs template --}}
                 </div>
             </section>
 
+            {{#has tag="#contact-council"}}
+                <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+                <script src="/assets/js/vue-clipboard.min.js"></script>
+                <script src="/assets/js/details-polyfill.js"></script>
+                <script src="https://unpkg.com/clipboard@2/dist/clipboard.min.js"></script>
+                <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBjjaAzhAGVi8Y9llD_e6MFgF1mekXhlFk&libraries=places"></script>
+                    <details class="letter councillor">
+                        <summary>Draft letter to councillor</summary>
+                        <p>
+                            <copy-button v-bind:copy='precontents' text='Copy letter'></copy-button>
+                        </p>
+                        <pre id="councillor-letter" ref="contents">
+Dear Councillor RECIPIENTNAME,
+
+I am a constituent writing out of concern over the increase to the Winnipeg Police Service (WPS) operating budget as proposed in the 2021 City of Winnipeg Preliminary Budget. I am writing to you, my elected representative, to immediately oppose this budget. 
+
+I ask that you reconsider the message that this proposed budget sends to constituents. In the words of Dr. Joe Curnow in her delegation1 to the Executive Policy Committee on Friday, December 11, “This budget is a tool of institutional white supremacy and, by pushing it forward, you are personally enabling racism to continue unchecked in Winnipeg.”
+
+If you care about racial justice in this city, you must amend this budget. If not, you are actively and knowingly implementing a policy that is racist and that will disproportionately harm Black and Indigenous communities and Communities of Colour.
+
+With this in mind, consistent with a July 2020 letter2 published by the City Councillor for Fort-Rouge East Fort Garry and member of the Executive Policy Committee, Sherri Rollins, I call on you to propose an immediate amendment to the 2021 preliminary budget that includes a 10% reduction to the WPS operating budget. 
+
+Putting forward this 10% reduction makes sense now more than ever. 
+
+Just last week, a video of a WPS officer who was in complete violation of the now-long standing provincial mask mandate went viral. Community abolitionist group Winnipeg Police Cause Harm (WPCH) then released a video3 that highlights first-hand accounts of interactions with unmasked WPS officers during the COVID-19 pandemic. The stories shared in WPCH’s video highlight a clear pattern of indignance and impunity that characterizes the overall ethos of the WPS.
+
+This is indeed a budget-related issue. The performance and conduct of the WPS, as a city-funded department, is relevant to discussion of that department’s budget. Your support for the 2021 Preliminary City of Winnipeg budget is telling the WPS that they have done a good job this year. They’ve done such a good job, in fact, that the department gets a $8.5 million dollar raise. This pat on the back comes despite the WPS killing Jason Collins, Stewart Andrews, 16-year old Eishia Hudson, as well as two other unnamed citizens who died at the hands of police this year. Furthermore, there is mounting evidence of WPS officers who consistently and blatantly ignore world health guidelines and even use this as an intimidation tactic. 
+
+A 10% reduction to the WPS budget is widely supported by Winnipeggers. Poll data, statistics, and academic research agrees. What is more, over 115,000 people have now signed the Justice4BlackLives petition4. This is equivalent to over 15% of the city’s population who support defunding the WPS. The petition outlines a clear, 10-step process for defunding the WPS over time, including the demand for the City of Winnipeg to publicly commit to no longer raising the WPS budget, indefinitely. The community desperately needs these funds to be immediately redirected to life-sustaining services like public transportation, public housing, and access to food. 
+
+I hope that you listen to the voices of community members, particularly Black and Indigenous people, and people of colour, and immediately oppose the 2021 City of Winnipeg Preliminary budget. An amended budget to include a 10% decrease to the WPS budget poses a great opportunity for you to let your constituents know that you will not stand by while racist policies get rammed through City Council. I hope you will champion this shift in priorities, as a meaningful response to the concerns of your community.
+
+Sincerely,
+
+SENDERNAME
+
+References
+1. https://www.youtube.com/watch?v=vBN4G0_brSo&ab_channel=WinnipegPoliceCauseHarm
+2. https://twitter.com/acabforbooty/status/1279086268274692102
+3. https://twitter.com/WpgPoliceHarm/status/1337066237851942912
+4. https://www.change.org/p/the-city-of-winnipeg-justice4blackliveswinnipeg-s-demands-to-make-winnipeg-safe-for-all-bipoc?recruiter=1110626132                         </pre>
+                    </details>
+
+                    <div id="activate" class="take-action" style="display: none;">
+                        <label for="autocomplete">Find your councillor by entering your home address</label>
+                        <div class="autocomplete-or-locate">
+                            <input id="autocomplete" name="autocomplete">
+                            <button id="locate" v-html='locateLabel' v-on:click='locateMe' :disabled='locating'>Locate me</button>
+                        </div>
+                        <div id="map"></div>
+                    </div>
+
+                    <div id="status"></div>
+
+                    <div id="council-information" class="jurisdiction">
+                        <header>
+                            <h3 v-html="wardHeader">City council ward</h3>
+                        </header>
+
+                        <div id="councillor-information">
+                            <ul>
+                                <person-card
+                                    v-bind:person='person'
+                                    v-bind:key='person.name'>
+                                </person-card>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <script>
+                    function maybeSend(action, name, value) {
+                        if (window._paq) {
+                            _paq.push(['trackEvent', action, name, value]);
+                        }
+                    }
+
+                    var LATLNG_KEY = 'latlng';
+                    var ADDRESS_KEY = 'address';
+
+                    var emailSubjects = ['Concerns for 2021 budget'];
+
+                    var councillorEmailBody = encodeURIComponent(document.getElementById('councillor-letter').innerText);
+
+                    // Taken from https://stackoverflow.com/a/7627603/760389 overkill perhaps but sufficient??
+                    function makeSafeForCSS(name) {
+                        return name.replace(/[^a-z0-9]/g, function(s) {
+                            var c = s.charCodeAt(0);
+                            if (c == 32) return '-';
+                            if (c >= 65 && c <= 90) return '_' + s.toLowerCase();
+                            return '__' + ('000' + c.toString(16)).slice(-4);
+                        });
+                    }
+
+                    Vue.use(VueClipboard);
+
+                    var CopyComponent = Vue.component('CopyButton', {
+                        props: ['copy', 'text'],
+                        data: function () {
+                            return {
+                                copy: null,
+                                state: null,
+                                text: null,
+                            }
+                        },
+                        template: `
+                            <button class='action-button' v-clipboard:copy='copy' v-clipboard:success='onCopy' v-clipboard:error='onError'>
+                                <span v-html='bodyOrMessage' />
+                            </button>
+                        `,
+                        computed: {
+                            bodyOrMessage: function() {
+                                if (this.state === 'success') {
+                                    return 'Copied';
+                                } else if (this.state === 'error') {
+                                    return 'Error';
+                                } else {
+                                    return this.text || 'Copy';
+                                }
+                            },
+                        },
+                        methods: {
+                            onCopy: function(e) {
+                                this.state = 'success';
+                                maybeSend('Copying', 'Copied', this.copy);
+                            },
+
+                            onError: function(e) {
+                                this.state = 'error';
+                                maybeSend('Copying', 'Error', this.copy);
+                            }
+                        }
+                    })
+
+                    var PersonCardComponent = Vue.component('PersonCard', {
+                        props: ['person', 'trustee'],
+                        template: `
+                            <li class='person-card' :class='cardClass'>
+                                <div class='photo-container' v-if="person.photo">
+                                    <img :src="photoPath" class='person-photo'>
+                                </div>
+                                <div class='person-details'>
+                                    <div class='name' v-html="person.name"></div>
+                                    <div class='phone row' v-if="person.phone">
+                                        <span v-html='person.phone' />
+                                        <div class='actions'>
+                                            <a class='action-button' :href="telHref" v-on:click='onPhone'>Call </a>
+                                            <copy-button v-bind:copy='person.phone' />
+                                        </div>
+                                    </div>
+                                    <div class='person-email row' v-if="person.email">
+                                        <span v-html='person.email' />
+                                        <div class='actions'>
+                                            <a class='action-button' :href="mailtoHref" v-on:click='onOpenEmail'>Open email</a>
+                                            <copy-button v-bind:copy='person.email' text='Copy email' />
+                                        </div>
+                                    </div>
+                                    <p v-if='mailtoFailed'>Some configurations may not be able to open email as desired. You can copy the email address and then copy the draft letter above.</p>
+                                </div>
+                            </li>
+                        `,
+                        data: function() {
+                            let recipientName;
+
+                            if (this.person && this.person.name && this.person.name.includes('vacant')) {
+                                recipientName = 'Brenda Lapointe';
+                            } else if (this.person) {
+                                recipientName = this.person.name;
+                            } else {
+                                recipientName = '';
+                            }
+
+                            // Taken from https://stackoverflow.com/a/23976260/760389
+                            var randomSubject = emailSubjects[emailSubjects.length * Math.random() | 0];;
+
+                            return {
+                                mailtoHref: `mailto:${this.person.email}?subject=${encodeURIComponent(randomSubject)}&bcc=wpgpolicecauseharm%40gmail.com&body=${councillorEmailBody.replace('RECIPIENTNAME', recipientName)}`,
+                                photoPath: `/assets/images/people/${this.person.photo}`,
+                                telHref: `tel:${this.person.phone}`,
+
+                                emailId: makeSafeForCSS(this.person.name),
+
+                                cardClass: this.person.placeholder ? 'placeholder' : '',
+
+                                mailtoFailed: false,
+
+                                Copied: 'Copied',
+                                Error: 'Error',
+                            }
+                        },
+                        methods: {
+                            onOpenEmail: function(e) {
+                                maybeSend('OpenEmail', 'Email', this.person.email);
+
+                                var timeout = setTimeout(function() {
+                                    maybeSend('MailtoFailed');
+                                    this.$data.mailtoFailed = true
+                                }.bind(this), 1000);
+
+                                $(window).on('blur', function() {
+                                    clearTimeout(timeout);
+                                });
+                            },
+
+                            onPhone: function(e) {
+                                maybeSend('Phone', 'Phone', this.person.phone);
+                            },
+                        }
+                    });
+
+                    new ClipboardJS('.copy-email button');
+
+                    var map, marker, autocompleteInput;
+
+                    var geocoder = new google.maps.Geocoder();
+
+                    var geojsonStyle = {
+                        strokeWeight: 1,
+                        strokeOpacity: 0.25,
+                        fillOpacity: 0.01,
+                    }
+
+
+                    var detailsSelectors = [".letter.councillor"];
+
+                    detailsSelectors.forEach(function(selector) {
+                        new Vue({
+                            el: selector,
+                            data: {
+                                precontents: 'something',
+                            },
+                            mounted: function() {
+                                var letterContents = this.$refs.contents.innerText;
+                                this.$data.precontents = letterContents;
+                            }
+                        });
+                    });
+
+                    var councilWardVue, locateMeVue;
+
+                    councilWardVue = new Vue({
+                        el: '#council-information header',
+                        data: {
+                            council: undefined,
+                        },
+                        computed: {
+                            wardHeader: function() {
+                                if (this.council && this.council.ward) {
+                                    return `${this.council.ward} city council ward`;
+                                } else {
+                                    return 'Unknown city council ward';
+                                }
+                            },
+                        },
+                    });
+
+                    var councillorVue;
+
+                    var silhouetteCouncillor = {
+                        name: 'Councillor',
+                        photo: 'silhouette.png',
+                        placeholder: true,
+                    };
+
+                    councillorVue = new Vue({
+                        el: '#councillor-information',
+                        data: {
+                            person: silhouetteCouncillor
+                        }
+                    });
+
+                    google.maps.event.addDomListener(window, 'load', function initialize() {
+                            //create the map
+                            map = new google.maps.Map(document.getElementById('map'), {
+                            zoom: 13,
+                            minZoom: 10,
+                            maxZoom: 13,
+                            center: {lat: 49.899396, lng: -97.139490},
+                            scrollwheel: false,
+                            fullscreenControl: false,
+                            mapTypeControl: false,
+                            streetViewControl: false,
+                            styles: [{
+                                featureType: 'poi',
+                                stylers: [{ visibility: 'off' }],
+                            }],
+                            });
+                            window.map = map;
+
+                            map.addListener('click', function(mapsMouseEvent) {
+                                handleNewLocation(mapsMouseEvent.latLng);
+                            });
+
+                            map.data.addListener('click', function(mapsMouseEvent) {
+                                handleNewLocation(mapsMouseEvent.latLng);
+                            });
+
+                            fetch('https://address-to-ward.policefreeschoolswpg.ca/council-wards.geojson').then(r => r.json()).then(json => {
+                                map.data.addGeoJson(json);
+                                map.data.setStyle(geojsonStyle);
+                            });
+
+                            // For convenience of not needing to search when refreshing
+                            // handleNewLocation(new google.maps.LatLng(49.7855472, -97.1561541));
+
+                            var activated = $('#activate');
+                            activated.show();
+
+                            var bounds = new google.maps.LatLngBounds(
+                                new google.maps.LatLng(49.696011,-97.461243),
+                                new google.maps.LatLng(50.002406,-96.981259),
+                            );
+
+                            autocompleteInput = document.getElementById('autocomplete');
+                            autocompleteInput.focus();
+                            var autocomplete = new google.maps.places.Autocomplete(autocompleteInput, { bounds });
+
+                            autocomplete.addListener('place_changed', function() {
+                                var place = autocomplete.getPlace();
+                                var address = place.formatted_address;
+                                localStorage.setItem(ADDRESS_KEY, address);
+                                maybeSend('PlaceChanged', 'Place', extractPostalCodePrefix(place));
+
+                                handleNewLocation(place.geometry.location);
+                            });
+
+                            $('#autocomplete').click(function () {
+                                this.focus();
+                                this.select();
+                            });
+
+                            locateMeVue = new Vue({
+                                el: '#locate',
+                                data: {
+                                    locateLabel: 'Locate me',
+                                    locating: false,
+                                },
+                                methods: {
+                                    locateMe: function() {
+                                        if (navigator.geolocation) {
+                                            this.$data.locateLabel = 'Locating…';
+                                            this.$data.locating = true;
+                                            maybeSend('Geolocation', 'Starting');
+
+                                            navigator.geolocation.getCurrentPosition(function (position) {
+                                                var ll = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
+                                                maybeSend('Geolocation', 'Complete');
+                                                handleNewLocation(ll);
+                                                this.$data.locateLabel = 'Located';
+                                                this.$data.locating = false;
+                                            }.bind(this), function(e) {
+                                                maybeSend('Geolocation', 'Failed', e.toString());
+                                                console.log('error geolocating', e);
+                                                this.$data.locateLabel = 'Unavailable';
+                                            }.bind(this));
+                                        } else {
+                                            this.$data.locateLabel = 'Unavailable';
+                                            this.$data.locating = true;
+                                        }
+                                    },
+                                },
+                            })
+                            $("#locxxate").click(function() {
+                                var button = $(this);
+                                if (navigator.geolocation) {
+                                    var button
+                                    button.attr('disabled', true);
+                                    maybeSend('Geolocation', 'Starting');
+
+                                    navigator.geolocation.getCurrentPosition(function (position) {
+                                        var ll = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
+                                        maybeSend('Geolocation', 'Complete');
+                                        handleNewLocation(ll);
+                                        button.attr('disabled', false);
+                                    });
+                                }
+                            });
+
+
+                            var storedLatlng = window.localStorage.getItem(LATLNG_KEY);
+
+                            if (storedLatlng) {
+                                handleNewLocation(new google.maps.LatLng(JSON.parse(storedLatlng)));
+                            }
+
+                            var storedAddress = window.localStorage.getItem(ADDRESS_KEY);
+
+                            if (storedAddress) {
+                                autocompleteInput.value = storedAddress;
+                            }
+                    });
+
+                    function extractPostalCode(place) {
+                        var postalCodeComponent = place.address_components.find(function(component) {
+                            return component.types[0] === 'postal_code';
+                        });
+
+                        if (postalCodeComponent) {
+                            return postalCodeComponent.short_name;
+                        } else {
+                            return 'Unknown';
+                        }
+                    }
+
+                    function extractPostalCodePrefix(place) {
+                        var postalCodeComponent = place.address_components.find(function(component) {
+                            return component.types[0] === 'postal_code';
+                        });
+
+                        if (postalCodeComponent) {
+                            var prefix = postalCodeComponent.short_name.split(' ')[0];
+                            return prefix;
+                        } else {
+                            return 'Unknown';
+                        }
+                    }
+
+                    function handleNewLocation(location, fromStorage) {
+                        if (!fromStorage) {
+                            window.localStorage.setItem(LATLNG_KEY, JSON.stringify(location));
+                        }
+
+                        var lat = location.lat();
+                        var lng = location.lng();
+
+                        var url = 'https://address-to-ward.policefreeschoolswpg.ca/' + lat + ',' + lng;
+
+                        if (!marker) {
+                            marker = new google.maps.Marker({
+                                position: location,
+                                map,
+                                icon: 'https://maps.gstatic.com/mapfiles/ridefinder-images/mm_20_black.png',
+                            });
+                        } else {
+                            marker.setPosition(location);
+                        }
+
+                        map.panTo(location);
+
+                        $("#council-information").hide();
+
+                        updateStatus('Searching…');
+
+                        geocoder.geocode({ location }, function(results, status) {
+                            maybeSend('Geocoding', 'Starting');
+                            if (status === "OK") {
+                                if (results[0]) {
+                                    var address = results[0].formatted_address;
+                                    autocompleteInput.value = address;
+                                    maybeSend('Geocoding', 'Complete', extractPostalCodePrefix(results[0]));
+                                    window.localStorage.setItem(ADDRESS_KEY, address);
+
+                                    var postalCode = extractPostalCode(results[0]);
+                                    url = url + '?postal-code=' + postalCode;
+
+                                    fetch(url).then(res => res.json()).then(handleAddressToWardResponse);
+                                }
+                            }
+                        });
+                    }
+
+                    function handleAddressToWardResponse(json) {
+                        updateStatus('');
+
+                        councillorVue.$data.personList = silhouetteCouncillor;
+
+                        var ward = 'Not found';
+
+                        if (json.council) {
+                            councilWardVue.$data.council = json.council;
+                            displayCouncilInformation(json.council);
+
+                            ward = json.council.ward;
+
+                            map.data.setStyle(function(feature) {
+                                const fw = feature.getProperty('name');
+
+                                if (fw == ward) {
+                                    return Object.assign({}, geojsonStyle, {
+                                        fillColor: '#dc3545',
+                                        fillOpacity: 0.5,
+                                    });
+                                } else {
+                                    return Object.assign({}, geojsonStyle, {
+                                        fillColor: '#dc3545',
+                                        fillOpacity: 0.2,
+                                    });
+                                }
+                            })
+                        } else {
+                            councilWardVue.$data.council = undefined;
+                            map.data.setStyle(function(feature) {
+                                    return Object.assign({}, geojsonStyle, {
+                                        fillColor: '#dc3545',
+                                        fillOpacity: 0.4,
+                                    });
+                            });
+                        }
+                    }
+
+                    function updateStatus(s) {
+                        $('#status').text(s);
+                    }
+
+                    function displayCouncilInformation(council) {
+                        councillorVue.$data.person = council.councillor;
+                        $('#council-information').show();
+                    }
+                </script>
+            {{/has}}
+
         </article>
 
 
