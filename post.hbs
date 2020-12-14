@@ -484,11 +484,37 @@ Sincerely,
 
                         councillorVue.$data.personList = silhouetteCouncillor;
 
+                        var ward = 'Not found';
+
                         if (json.council) {
                             councilWardVue.$data.council = json.council;
                             displayCouncilInformation(json.council);
+
+                            ward = json.council.ward;
+
+                            map.data.setStyle(function(feature) {
+                                const fw = feature.getProperty('name');
+
+                                if (fw == ward) {
+                                    return Object.assign({}, geojsonStyle, {
+                                        fillColor: '#dc3545',
+                                        fillOpacity: 0.5,
+                                    });
+                                } else {
+                                    return Object.assign({}, geojsonStyle, {
+                                        fillColor: '#dc3545',
+                                        fillOpacity: 0.2,
+                                    });
+                                }
+                            })
                         } else {
                             councilWardVue.$data.council = undefined;
+                            map.data.setStyle(function(feature) {
+                                    return Object.assign({}, geojsonStyle, {
+                                        fillColor: '#dc3545',
+                                        fillOpacity: 0.4,
+                                    });
+                            });
                         }
                     }
 
