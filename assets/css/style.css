@@ -1050,3 +1050,6 @@ button:focus {
 }
 
 
+.tag-hash-contact-council #map {
+    height: 400px;
+}
