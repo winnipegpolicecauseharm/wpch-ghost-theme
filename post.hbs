@@ -168,7 +168,7 @@ Sincerely,
                                             <copy-button v-bind:copy='person.phone' />
                                         </div>
                                     </div>
-                                    <div class='email row' v-if="person.email">
+                                    <div class='person-email row' v-if="person.email">
                                         <span v-html='person.email' />
                                         <div class='actions'>
                                             <a class='action-button' :href="mailtoHref" v-on:click='onOpenEmail'>Open email</a>

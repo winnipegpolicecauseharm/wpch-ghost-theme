@@ -1049,7 +1049,105 @@ button:focus {
 }
 }
 
+.tag-hash-contact-council .autocomplete-or-locate {
+    display: flex;
+    position: relative;
+}
+
+.tag-hash-contact-council .autocomplete-or-locate input {
+    flex-grow: 1;
+}
+
+.tag-hash-contact-council .autocomplete-or-locate button {
+    position: absolute;
+    right: 0;
+    top: 100%;
+    margin: 10px;
+    z-index: 10;
+    background: #dc3545;
+    color: #f7f4da;
+    padding: 0.5rem 1.5rem;
+    flex-shrink: 0;
+}
+
+.tag-hash-contact-council .autocomplete-or-locate button:disabled {
+    opacity: 0.5;
+}
+
+.tag-hash-contact-council #council-information {
+    margin-top: 2rem;
+    border: 1px solid black;
+}
+
+.tag-hash-contact-council h3 {
+    padding-bottom: 0;
+}
 
 .tag-hash-contact-council #map {
     height: 400px;
+}
+
+.tag-hash-contact-council summary {
+    display: list-item;
+}
+
+.tag-hash-contact-council .person-card {
+    display: flex;
+    padding: 0;
+    overflow: hidden;
+}
+
+.tag-hash-contact-council .person-card.placeholder {
+    opacity: 0.35;
+}
+
+.tag-hash-contact-council .person-details {
+    padding: 0 1em;
+}
+
+.tag-hash-contact-council .person-card .name {
+    margin: 1em 0;
+    font-weight: bold;
+}
+
+.tag-hash-contact-council .person-card .row {
+    display: flex;
+    margin-bottom: 0.5rem;
+    margin-left: 0;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+.tag-hash-contact-council .person-card .row > span {
+    margin-right: 1em;
+}
+
+.tag-hash-contact-council .person-card .actions {
+    display: flex;
+    flex-direction: row;
+}
+
+.tag-hash-contact-council .person-card .action-button {
+    display: block;
+    background: #dc3545;
+    color: white;
+    padding: 0.3em 0.5em;
+    margin-right: 1rem;
+    text-decoration: none;
+    box-shadow: none;
+    text-align: center;
+    border-radius: calc(var(--radius)/2);
+}
+
+.tag-hash-contact-council .person-card .action-button:hover {
+    text-decoration: none;
+    background: black;
+    color: #dc3545;
+}
+
+.tag-hash-contact-council #councillor-information .person-photo {
+    width: 250px;
+    height: 100%;
+    object-fit: cover;
+    margin: 0;
 }
