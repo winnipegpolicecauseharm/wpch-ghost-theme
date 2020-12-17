@@ -1151,3 +1151,11 @@ button:focus {
     object-fit: cover;
     margin: 0;
 }
+
+.author-link::after {
+    content: ', ';
+}
+
+.author-link:last-of-type::after {
+    content: '';
+}
