@@ -574,19 +574,10 @@ blockquote::after{
     padding-left: 25px;
     transform: rotate(-5deg);
     font-style: italic;
-    font-size: 3rem;
+    font-size: 4.5rem;
     font-family: 'Roboto', sans-serif;
     margin-top: 100px;
     margin-bottom: 100px;
-}
-
-.home-text-heading h2 {
-    margin-top: 0px;
-    margin-bottom: 0px;
-}
-
-.mission-text-heading h2 {
-    margin-top: 0px;
 }
 
 .text-heading h3 {
@@ -602,9 +593,39 @@ blockquote::after{
     padding-left: 25px;
     transform: rotate(-5deg);
     font-style: italic;
-    font-size: 2rem;
-    margin-bottom: 75px;
+    font-size: 1.7rem;
+    margin-bottom: 50px;
     font-family: 'Roboto', sans-serif;
+}
+
+.blog-card-text {
+    font-size: 1.25rem;
+    line-height: 1.5;
+}
+
+.home-text-heading h2 {
+    margin-top: 0px;
+    margin-bottom: 0px;
+}
+
+.mission-text-heading h2 {
+    margin-top: 0px;
+}
+
+.mt-100px {
+    margin-top: 100px
+}
+
+.mt-200px {
+    margin-top: 100px
+}
+
+.mb-100px {
+    margin-bottom: 100px
+}
+
+.mb-200px {
+    margin-bottom: 200px
 }
 
 .content {
@@ -808,7 +829,6 @@ transition: all .2s ease-in-out !important;
 margin-bottom: 50px;
 box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
 width: 500px;
-padding: 25px; 
 }
 
 @media screen and (max-width: 600px) {

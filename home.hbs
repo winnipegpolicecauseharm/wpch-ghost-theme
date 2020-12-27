@@ -27,29 +27,24 @@
 
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans&family=Roboto:ital,wght@1,500&display=swap" rel="stylesheet">
 
-
-
-
     {{!-- Dynamic header content for SEO, meta tags, code injection etc --}}
     {{ghost_head}}
 </head>
 
 <body class="{{body_class}}">
 
-
     {{> nav}}
 
-        <div class="hero2">
-            <div  class="text-heading home-text-heading">
-            <img  class="hero-logo" src="{{asset "images/logo.png"}}">
-            <h2 >DEFUND THE POLICE</h2>
-           <div data-aos="fade-up" class="hero-social-media">
-
-            <a href="https://www.facebook.com/wpgpoliceharm/" target="_blank"> <img class="hvr-float"  src="{{asset "images/facebook.png"}}" width="50" height="50"> </a>
-            <a href="https://www.instagram.com/wpgpoliceharm/" target="_blank"> <img class="hvr-float"  src="{{asset "images/instagram.png"}}" width="50" height="50"> </a>
-            <a href="https://twitter.com/WpgPoliceHarm" target="_blank"> <img class="hvr-float"  src="{{asset "images/twitter.png"}}" width="50" height="50"> </a>
-
-
+        <div class="hero2 d-flex flex-column justify-content-center">
+            <div  class="d-flex flex-row justify-content-center mb-4">
+                <img  class="hero-logo img-fluid" src="{{asset "images/logo.png"}}">
+            </div>
+            <div class="text-light text-center font-weight-bold h1 hero-text mr-5 ml-5 pr-5 pl-5"> {{#page}} {{content}} {{/page}} </div>
+            <div data-aos="fade-up" class="d-flex flex-row justify-content-center">
+                <a class ="pr-4 pl-4" href="https://www.facebook.com/wpgpoliceharm/" target="_blank"> 
+                    <img class="hvr-float"  src="{{asset "images/facebook.png"}}" width="50" height="50"> </a>
+                <a class ="pr-4 pl-4" href="https://www.instagram.com/wpgpoliceharm/" target="_blank"> 
+                    <img class="hvr-float"  src="{{asset "images/instagram.png"}}" width="50" height="50"> </a>
             </div>
             
             <!--<section><h3>Recent posts from the blog</h3><ul><li> <a href="/blog/the-most-recent-post-so-far">The most recent post so far</a></li><li> <a href="/blog/a-simple-post">A simple blog post</a></li><li> <a href="/blog/another-post">Another post</a></li></ul></section>-->
@@ -63,76 +58,81 @@
         <br>
         <div data-aos="fade-up" class="text-heading mission-text-heading" > <h2>OUR VISION</h2></div>
         <div data-aos="fade-up" > <div class="text-body"> We are a leaderless, horizontally organized group that is anti-capitalist, anti-carceral, anti-colonial, and anti-oppressive. Our approach to our work is intersectional. We are in humble solidarity with all peoples and communities who are harmed by the WPS. <br> <br> We do not advocate for police reform, but rather the defunding and abolition of the WPS and reallocation of their funds to sustainable, community-led alternatives. We strive to apply these values in our organizing work, our interactions with each other, and in our personal lives. </div></div>
-    </div>
-
-    <hr width="50%">
-
-    <section class="">
-    <div >
-
-        <div class="blog-flex-row">
-            {{#get "posts" limit="2"}}
-            {{!-- Iterate through each posts --}}
-            {{#foreach posts}}
-
-            <a class="text-dark" href="{{url}}">
-            <article class="{{post_class}} blog-card grow flex-col" data-aos="fade-up">
-                <div class="card-body">
-
-                    {{!-- Display primary tag of the post if exists--}}
-                    {{#if primary_tag}}
-                    <a href="{{primary_tag.url}}" class="badge badge-success">
-                        {{primary_tag.name}}
-                    </a>
-                    {{/if}}
-
-                    
-                        {{!-- Post title --}}
-                        <div class="text-heading"> <h3>{{title}}</h3> </div>
-                    
-                    {{!-- Displays featured image if it exists.--}}
-                    {{#if feature_image}}
-                            <img src={{feature_image}} />
-                    {{/if}}
-                    <br>
-                    
-                    {{!-- Displays post excerpt. Sets to display max 170 chars if not set --}}
-                    <p>{{excerpt characters="170"}}</p>
-
-                    <div>
-                        <span class="reading-time">{{reading_time}}</span>
-                        <span> - Published: {{date published_at timeago="true"}}</span>
-                    </div>
-
-                </div>{{!--/.post-card-content--}}
-            
-            </article>
-            </a>
-
-            {{/foreach}}
-            {{/get}}
-
+        <div data-aos="fade-up" class="text-heading mission-text-heading " > 
+            <h2>OUR VISION</h2>
         </div>
-
-
-
+        <div data-aos="fade-up" > 
+            <div class="text-dark font-weight-bold h1 mx-auto hero-text text-center" style="width:75%"> We are a leaderless, horizontally organized group that is <span class="text-danger">anti-capitalist</span>,  <span class="text-danger">anti-carceral</span>, <span class="text-danger">anti-colonial</span>, and <span class="text-danger">anti-oppressive</span>. Our approach to our work is intersectional. We are in humble solidarity with all peoples and communities who are harmed by the WPS
+            </div>
+        </div>
+        <div class="text-center mt-100px mb-200px" data-aos="fade-up">
+            <img class=" mr-4 img-fluid" src="{{asset "images/wpch_protest.jpg"}}" alt="members of winnipeg police cause harm holding a defund the police banner over a bridge" width="378" height="378">
+            <img class=" ml-4 img-fluid" src="{{asset "images/wpch_forks.jpg"}}" alt="two members of winnipeg police cause harm at a police abolition info booth at the forks" width="372" height="272" style="margin-bottom: -100px;">
+        </div>
+        <div data-aos="fade-up" > 
+            <div class="text-dark font-weight-bold h1 mx-auto hero-text text-center" style="width:75%">We <u>do not</u> advocate for police reform, but rather the defunding and abolition of the WPS and reallocation of their funds to sustainable, community-led alternatives.
+            </div>
+        </div>
+        <div class="text-center mt-100px mb-200px" data-aos="fade-up">
+            <img class=" mr-4 img-fluid" src="{{asset "images/wpch_defund.jpg"}}" alt="protest posters on Winnipeg police headquarters" width="332" height="416 ">
+            <img class=" ml-4 img-fluid mb-200px" src="{{asset "images/wpch_posters.jpg"}}" alt="three police abolition posters on a bridge" width="332" height="332">
+        </div>
+        <div data-aos="fade-up" > 
+            <div class="text-dark font-weight-bold h1 mx-auto hero-text text-center mt-100px" style="width:75%;">We strive to apply these values in our organizing work, our interactions with each other, and in our personal lives.
+            </div>
+        </div>
     </div>
 
-    <div data-aos="fade-up"  style="display: flex;
-    justify-content: center;margin-bottom: 100px;margin-top: 50px;"> 
-    <a href="/blog" class="myButton grow2">MORE POSTS</a>
-    </div>
+    <section class="mt-100px bg-light">
+        <div>
+            <div data-aos="fade-up" class="text-heading mission-text-heading mt-100px mb-100px" > <h2>FROM THE BLOG</h2></div>
+                <div class="blog-flex-row">
+                    {{#get "posts" limit="3"}}
+                    {{!-- Iterate through each posts --}}
+                    {{#foreach posts}}
+                    <a class="text-dark" href="{{url}}">
+                        <article class="{{post_class}} card grow " data-aos="fade-up" style="width: 30rem;">
+                            <div class="card-body p-0">
 
+                                {{!-- Display primary tag of the post if exists--}}
+                                {{#if primary_tag}}
+                                <a href="{{primary_tag.url}}" class="badge badge-success">
+                                    {{primary_tag.name}}
+                                </a>
+                                {{/if}}
 
-</section>
-
+                                {{!-- Displays featured image if it exists.--}}
+                                {{#if feature_image}}
+                                    <img class="card-img-top" src={{feature_image}} />
+                                {{/if}}
+                                <br>
+                                <div class="p-4 m-2">
+                                    {{!-- Post title --}}
+                                    <div class="text-heading"> <h3>{{title}}</h3> </div>
+                                    {{!-- Displays post excerpt. Sets to display max 170 chars if not set --}}
+                                    <p class="blog-card-text">{{excerpt characters="170"}}</p>
+                                    {{!-- Displays reading time and publised time --}}
+                                    <div>
+                                        <span class="reading-time blog-card-text">{{reading_time}}</span>
+                                        <span class="blog-card-text"> - Published: {{date published_at timeago="true"}}</span>
+                                    </div>
+                                </div>
+                            </div>{{!--/.post-card-content--}}     
+                        </article>
+                    </a>
+                    {{/foreach}}
+                    {{/get}}
+                </div>
+            </div>
+        <div data-aos="fade-up"  style="display: flex;justify-content: center;margin-bottom: 100px;margin-top: 50px;"> 
+            <a href="/blog" class="myButton grow2">MORE POSTS</a>
+        </div>
+    </section>
 
         <footer>
             <div class="footer-items">
             <h2 class="footer-defund-the-police">DEFUND THE POLICE.</h2>
- 
-        <!--     <img src="logo.png" width="100" height="100"> -->
-<hr>
+            <hr>
 
             <div class="hero-social-media">
             <a href="https://www.facebook.com/wpgpoliceharm/" target="_blank"> <img class="hvr-float"  src="{{asset "images/facebook.png"}}" width="50" height="50"> </a>

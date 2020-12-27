@@ -61,8 +61,8 @@
             {{#foreach posts}}
 
             <a class="text-dark" href="{{url}}">
-            <article class="{{post_class}} blog-card grow flex-col" data-aos="fade-up">
-                <div class="card-body">
+            <article class="{{post_class}} card grow flex-col" data-aos="fade-up">
+                <div class="card-body p-0">
 
                     {{!-- Display primary tag of the post if exists--}}
                     {{!-- {{#if primary_tag}}
@@ -71,22 +71,25 @@
                     </a>
                     {{/if}} --}}
 
-                    
-                        {{!-- Post title --}}
-                        <div class="text-heading"> <h3>{{title}}</h3> </div>
-                    
                     {{!-- Displays featured image if it exists.--}}
                     {{#if feature_image}}
-                            <img src={{feature_image}} />
+                        <img class="card-img-top" src={{feature_image}} />
                     {{/if}}
+          
                     <br>
                     
-                    {{!-- Displays post excerpt. Sets to display max 170 chars if not set --}}
-                    <p>{{excerpt characters="170"}}</p>
+                    <div class="p-4 m-2">
 
-                    <div>
-                        <span class="reading-time">{{reading_time}}</span>
-                        <span> - Published: {{date published_at timeago="true"}}</span>
+                            {{!-- Post title --}}
+                            <div class="text-heading"> <h3>{{title}}</h3> </div>
+    
+                            {{!-- Displays post excerpt. Sets to display max 170 chars if not set --}}
+                            <p class="blog-card-text">{{excerpt characters="170"}}</p>
+
+                             <div>
+                                <span class="reading-time blog-card-text">{{reading_time}}</span>
+                                <span> - Published: {{date published_at timeago="true"}}</span>
+                            </div>
                     </div>
 
                 </div>{{!--/.post-card-content--}}
