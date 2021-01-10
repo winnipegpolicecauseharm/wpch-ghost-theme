@@ -570,7 +570,7 @@ blockquote::after{
     margin: 0px;
     margin: auto;
     padding: 10px;
-    padding-right: 25px;
+    padding-right: 28px;
     padding-left: 25px;
     transform: rotate(-5deg);
     font-style: italic;
@@ -589,7 +589,7 @@ blockquote::after{
     margin: 0px;
     margin: auto;
     padding: 10px;
-    padding-right: 25px;
+    padding-right: 28px;
     padding-left: 25px;
     transform: rotate(-5deg);
     font-style: italic;
@@ -626,6 +626,11 @@ blockquote::after{
 
 .mb-200px {
     margin-bottom: 200px
+}
+@media screen and (max-width: 600px) {
+.mb-0px-mobile{
+    margin-bottom: 0px;
+}
 }
 
 .content {
