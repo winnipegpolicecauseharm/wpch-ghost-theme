@@ -14,9 +14,12 @@
 }
 
 .hero2 {
-    height: fit-content;
+        height: fit-content;
     min-height: 550px;
-    background-image: url("/assets/images/protest2.png");
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-image: url(/assets/images/protest2.png);
     background-position: center;
     background-size: cover;
 }
@@ -69,13 +72,16 @@
     }
 }
 .hero-logo {
-    width: 13%;
+        margin-bottom: 10px;
+    width: 50%;
+    height: 50%;
 
 }
 
 .hero-text p{
     font-family: 'Roboto', sans-serif;
     font-size: 2.5rem;
+    line-height: 1.3;
 }
 
 @media screen and (max-width: 768px) {
