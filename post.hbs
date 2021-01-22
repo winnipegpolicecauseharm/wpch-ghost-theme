@@ -14,9 +14,9 @@ into the {body} of the default.hbs template --}}
 
             {{!-- Display author, date and tags --}}
             <div class="text-center text-upper m-5">
-                <a class="text-danger" href="{{primary_author.url}}">
-                    {{primary_author.name}}
-                </a>
+                {{#foreach authors}}
+                    <a class="author-link text-danger" href="{{url}}">{{name}}</a>
+                {{/foreach}}
 
                 <time datetime="{{date format="YYYY-MM-DD"}}">
                     - {{date format="D MMMM YYYY"}}

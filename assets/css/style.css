@@ -570,23 +570,13 @@ blockquote::after{
     margin: 0px;
     margin: auto;
     padding: 10px;
-    padding-right: 25px;
+    padding-right: 28px;
     padding-left: 25px;
     transform: rotate(-5deg);
     font-style: italic;
-    font-size: 3rem;
     font-family: 'Roboto', sans-serif;
     margin-top: 100px;
     margin-bottom: 100px;
-}
-
-.home-text-heading h2 {
-    margin-top: 0px;
-    margin-bottom: 0px;
-}
-
-.mission-text-heading h2 {
-    margin-top: 0px;
 }
 
 .text-heading h3 {
@@ -598,13 +588,52 @@ blockquote::after{
     margin: 0px;
     margin: auto;
     padding: 10px;
-    padding-right: 25px;
+    padding-right: 28px;
     padding-left: 25px;
     transform: rotate(-5deg);
     font-style: italic;
-    font-size: 2rem;
-    margin-bottom: 75px;
+    font-size: 1.7rem;
+    margin-bottom: 50px;
     font-family: 'Roboto', sans-serif;
+}
+
+.blog-card-text {
+    font-size: 1.25rem;
+    line-height: 1.5;
+}
+
+.home-text-heading h2 {
+    margin-top: 0px;
+    margin-bottom: 0px;
+}
+
+.mission-text-heading h2 {
+    margin-top: 0px;
+}
+
+.mt-100px {
+    margin-top: 100px
+}
+
+.mt-200px {
+    margin-top: 100px
+}
+
+.mb-100px {
+    margin-bottom: 100px
+}
+
+.mb-200px {
+    margin-bottom: 200px
+}
+
+.mb-300px {
+    margin-bottom: 300px
+}
+@media screen and (max-width: 600px) {
+.mb-0px-mobile{
+    margin-bottom: 0px;
+}
 }
 
 .content {
@@ -808,7 +837,6 @@ transition: all .2s ease-in-out !important;
 margin-bottom: 50px;
 box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
 width: 500px;
-padding: 25px; 
 }
 
 @media screen and (max-width: 600px) {
@@ -896,7 +924,6 @@ color:white !important;
     color:#000000;
     font-size:28px;
     font-weight:300;
-    font-style: italic;
     padding:20px 30px;
     text-decoration:none;
 }
@@ -924,7 +951,7 @@ color:white !important;
   display: flex ;
   flex-direction: row;
   justify-content: space-evenly;
-  /*flex-wrap: wrap;*/
+  flex-wrap: wrap;
   width: 100%;
 }
 
@@ -1002,6 +1029,35 @@ color:white !important;
     text-align: center;
     font-family: 'Open Sans', sans-serif;
     word-wrap: break-word;
+
+
+}
+
+.section-width{
+        width:60%;
+}
+
+
+@media (min-width: 1281px) {
+  
+.section-width{
+        width:60%;
+}
+}
+
+@media (min-width: 768px) and (max-width: 1024px) {
+  
+  .section-width{
+        width:75%;
+}
+  
+}
+
+@media (min-width: 320px) and (max-width: 480px) {
+
+    .section-width{
+        width:80%;
+}
 
 }
 
@@ -1150,4 +1206,12 @@ button:focus {
     height: 100%;
     object-fit: cover;
     margin: 0;
+}
+
+.author-link::after {
+    content: ', ';
+}
+
+.author-link:last-of-type::after {
+    content: '';
 }
