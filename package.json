@@ -39,5 +39,8 @@
     "action-version": "npm version prerelease --preid=\"${PR_BRANCH_NAME}\" --no-git-tag-version",
     "test": "gscan .",
     "test:ci": "gscan --fatal --verbose ."
+  },
+  "dependencies": {
+    "sqlite3": "^5.0.0"
   }
 }
