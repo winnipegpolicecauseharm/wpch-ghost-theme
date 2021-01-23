@@ -636,6 +636,16 @@ blockquote::after{
 }
 }
 
+
+@media (min-width: 1025px) and (max-width: 1280px) {
+  
+  .tablet-image{
+    width: width/2;
+    height: height/2;
+  }
+  
+}
+
 .content {
     width: 70%;
     margin: 0 auto;
