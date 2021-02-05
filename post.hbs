@@ -341,7 +341,7 @@ References
                                 handleNewLocation(mapsMouseEvent.latLng);
                             });
 
-                            fetch(ADDRESS_TO_WARD_HOST + '/council-wards.geojson').then(r => r.json()).then(json => {
+                            fetch(ADDRESS_TO_WARD_HOST + '/manitoba-electoral-divisions-simplified.geojson').then(r => r.json()).then(json => {
                                 map.data.addGeoJson(json);
                                 map.data.setStyle(geojsonStyle);
                             });
