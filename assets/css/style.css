@@ -1142,7 +1142,7 @@ button:focus {
     opacity: 0.5;
 }
 
-.tag-hash-contact-council #council-information {
+.tag-hash-contact-council #council-information, .tag-hash-contact-council #manitoba-information {
     margin-top: 2rem;
     border: 1px solid black;
 }

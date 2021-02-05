@@ -42,6 +42,7 @@ into the {body} of the default.hbs template --}}
                 </div>
             </section>
 
+            {{!-- FIXME how to generalise/make more flexible? Council only, MLAs only, both, etc --}}
             {{#has tag="#contact-council"}}
                 <script src="https://cdn.jsdelivr.net/npm/vue"></script>
                 <script src="/assets/js/vue-clipboard.min.js"></script>
@@ -95,6 +96,21 @@ References
                     </div>
 
                     <div id="status"></div>
+
+                    <div id="manitoba-information" class="jurisdiction">
+                        <header>
+                            <h3 v-html="divisionHeader">Manitoba electoral division</h3>
+                        </header>
+
+                        <div id="mla-information">
+                            <ul>
+                                <person-card
+                                    v-bind:person='person'
+                                    v-bind:key='person.name'>
+                                </person-card>
+                            </ul>
+                        </div>
+                    </div>
 
                     <div id="council-information" class="jurisdiction">
                         <header>
@@ -282,7 +298,7 @@ References
                         });
                     });
 
-                    var councilWardVue, locateMeVue;
+                    var councilWardVue, manitobaDivisionVue, locateMeVue;
 
                     councilWardVue = new Vue({
                         el: '#council-information header',
@@ -295,6 +311,22 @@ References
                                     return `${this.council.ward} city council ward`;
                                 } else {
                                     return 'Unknown city council ward';
+                                }
+                            },
+                        },
+                    });
+
+                    manitobaDivisionVue = new Vue({
+                        el: '#manitoba-information header',
+                        data: {
+                            manitoba: undefined,
+                        },
+                        computed: {
+                            divisionHeader: function() {
+                                if (this.manitoba && this.manitoba.division) {
+                                    return `${this.manitoba.division} Manitoba electoral division`;
+                                } else {
+                                    return 'Unknown Manitoba electoral division';
                                 }
                             },
                         },
@@ -313,6 +345,21 @@ References
                         data: {
                             person: silhouetteCouncillor
                         }
+                    });
+
+                    var mlaVue;
+
+                    var silhouetteMla = {
+                        name: 'MLA',
+                        photo: '/photos/silhouette.png',
+                        placeholder: true,
+                    };
+
+                    mlaVue = new Vue({
+                        el: '#mla-information',
+                        data: {
+                            person: silhouetteMla,
+                        },
                     });
 
                     google.maps.event.addDomListener(window, 'load', function initialize() {
@@ -483,6 +530,7 @@ References
                         map.panTo(location);
 
                         $("#council-information").hide();
+                        $("#manitoba-information").hide();
 
                         updateStatus('Searching…');
 
@@ -509,18 +557,25 @@ References
 
                         councillorVue.$data.personList = silhouetteCouncillor;
 
-                        var ward = 'Not found';
+                        var division = 'Not found';
 
                         if (json.council) {
                             councilWardVue.$data.council = json.council;
                             displayCouncilInformation(json.council);
+                        } else {
+                            councilWardVue.$data.council = undefined;
+                        }
 
-                            ward = json.council.ward;
+                        if (json.manitoba) {
+                            manitobaDivisionVue.$data.manitoba = json.manitoba;
+                            displayManitobaInformation(json.manitoba);
+
+                            division = json.manitoba.division;
 
                             map.data.setStyle(function(feature) {
-                                const fw = feature.getProperty('name');
+                                const fw = feature.getProperty('ED');
 
-                                if (fw == ward) {
+                                if (fw == division) {
                                     return Object.assign({}, geojsonStyle, {
                                         fillColor: '#dc3545',
                                         fillOpacity: 0.5,
@@ -531,9 +586,9 @@ References
                                         fillOpacity: 0.2,
                                     });
                                 }
-                            })
+                            });
                         } else {
-                            councilWardVue.$data.council = undefined;
+                            manitobaDivisionVue.$data.manitoba = undefined;
                             map.data.setStyle(function(feature) {
                                     return Object.assign({}, geojsonStyle, {
                                         fillColor: '#dc3545',
@@ -550,6 +605,11 @@ References
                     function displayCouncilInformation(council) {
                         councillorVue.$data.person = council.councillor;
                         $('#council-information').show();
+                    }
+
+                    function displayManitobaInformation(manitoba) {
+                        mlaVue.$data.person = manitoba.member;
+                        $('#manitoba-information').show();
                     }
                 </script>
             {{/has}}
