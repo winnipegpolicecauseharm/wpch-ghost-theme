@@ -202,18 +202,18 @@ References
                                 </div>
                                 <div class='person-details'>
                                     <div class='name' v-html="person.name"></div>
-                                    <div class='phone row' v-if="person.phone">
-                                        <span v-html='person.phone' />
+                                    <div class='phone row' v-if="phone">
+                                        <span v-html='phone' />
                                         <div class='actions'>
                                             <a class='action-button' :href="telHref" v-on:click='onPhone'>Call </a>
-                                            <copy-button v-bind:copy='person.phone' />
+                                            <copy-button v-bind:copy='phone' />
                                         </div>
                                     </div>
-                                    <div class='person-email row' v-if="person.email">
-                                        <span v-html='person.email' />
+                                    <div class='person-email row' v-if="email">
+                                        <span v-html='email' />
                                         <div class='actions'>
                                             <a class='action-button' :href="mailtoHref" v-on:click='onOpenEmail'>Open email</a>
-                                            <copy-button v-bind:copy='person.email' text='Copy email' />
+                                            <copy-button v-bind:copy='email' text='Copy email' />
                                         </div>
                                     </div>
                                     <p v-if='mailtoFailed'>Some configurations may not be able to open email as desired. You can copy the email address and then copy the draft letter above.</p>
@@ -235,10 +235,15 @@ References
                             var randomSubject = emailSubjects[emailSubjects.length * Math.random() | 0];;
                             var photoPath = ADDRESS_TO_WARD_HOST + this.person.photo;
 
+                            var phone = this.person.constituencyPhone || this.person.phone;
+                            var email = this.person.constituencyEmail || this.person.email;
+
                             return {
-                                mailtoHref: `mailto:${this.person.email}?subject=${encodeURIComponent(randomSubject)}&bcc=wpgpolicecauseharm%40gmail.com&body=${councillorEmailBody.replace('RECIPIENTNAME', recipientName)}`,
+                                phone: phone,
+                                email: email,
+                                mailtoHref: `mailto:${email}?subject=${encodeURIComponent(randomSubject)}&bcc=wpgpolicecauseharm%40gmail.com&body=${councillorEmailBody.replace('RECIPIENTNAME', recipientName)}`,
                                 photoPath: photoPath,
-                                telHref: `tel:${this.person.phone}`,
+                                telHref: `tel:${phone}`,
 
                                 emailId: makeSafeForCSS(this.person.name),
 
@@ -252,7 +257,7 @@ References
                         },
                         methods: {
                             onOpenEmail: function(e) {
-                                maybeSend('OpenEmail', 'Email', this.person.email);
+                                maybeSend('OpenEmail', 'Email', this.email);
 
                                 var timeout = setTimeout(function() {
                                     maybeSend('MailtoFailed');
@@ -265,7 +270,7 @@ References
                             },
 
                             onPhone: function(e) {
-                                maybeSend('Phone', 'Phone', this.person.phone);
+                                maybeSend('Phone', 'Phone', this.phone);
                             },
                         }
                     });
