@@ -5,10 +5,10 @@ into the {body} of the default.hbs template --}}
 {{!-- Everything inside the #post tags pulls data from the post --}}
 {{#post}}
 
-<main id="site-main" class="container">
+<main id="site-main" class="container pb-1">
     <div class="m-5">
 
-        <article class="{{post_class}} {{#unless feature_image}}no-image{{/unless}}">
+        <article class=" pt-3 {{post_class}} {{#unless feature_image}}no-image{{/unless}}">
 
              <div class="text-heading"> <h2 class="text-center" >{{title}}</h2> </div>
 
@@ -21,11 +21,6 @@ into the {body} of the default.hbs template --}}
                 <time datetime="{{date format="YYYY-MM-DD"}}">
                     - {{date format="D MMMM YYYY"}}
                 </time>
-
-                {{!-- Displays upto three tags separated by comma --}}
-                <p class="m-3">
-                    {{tags prefix="Tagged in: " separator="&comma; " limit="3"}}
-                </p>
             </div>
 
             {{!-- Displays the featured image if exists --}}
@@ -39,8 +34,15 @@ into the {body} of the default.hbs template --}}
                 <div class="post-content word-wrap">
                     {{!-- Display the post content --}}
                     {{content}}
+
+                    {{!-- Displays upto three tags separated by comma --}}
+                    <div class="text-muted mt-3 h4">
+                    	{{tags prefix="Tags: " separator="&comma; " limit="3"}}
+                	</div>
                 </div>
             </section>
+
+
 
             {{#has tag="#contact-council"}}
                 <script src="https://cdn.jsdelivr.net/npm/vue"></script>
@@ -560,5 +562,24 @@ References
 
     </div>
 </main>
+
+<div class="pt-3 pb-3 text-center font-weight-bold bg-light"> SHARE
+    <a href="https://twitter.com/intent/tweet?url=https://winnipegpolicecauseharm.org{{url}}&text={{title}}"> 
+    	<i class=" share-hover bi bi-twitter ml-2" style="font-size: 2rem"></i>
+    </a>
+    <a href="https://www.facebook.com/sharer/sharer.php?u=https://winnipegpolicecauseharm.org{{url}}">
+    	<i class=" share-hover bi bi-facebook  ml-2" style="font-size: 2rem"></i>
+    </a>
+ </div>
+ <a href="/donate" class="share-hover" >
+ <div class="pt-3 pb-3 text-center font-weight-bold text-white share-hover" style="background-color:#2C2C2C">
+ 	<i class="bi bi-heart-fill mr-2 share-hover " style="font-size: 2rem;"></i>
+
+  DONATE
+
+ </div>
+
+</a>
+
 
 {{/post}}

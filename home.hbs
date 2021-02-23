@@ -32,7 +32,7 @@
 </head>
 
 <body class="{{body_class}}">
-
+	
     {{> nav}}
 
         <div class="hero2">
@@ -130,20 +130,7 @@
         </div>
     </section>
 
-        <footer>
-            <div class="footer-items">
-            <h2 class="footer-defund-the-police">DEFUND THE POLICE.</h2>
-            <hr>
-
-            <div class="hero-social-media">
-            <a href="https://www.facebook.com/wpgpoliceharm/" target="_blank"> <img class="hvr-float"  src="{{asset "images/facebook.png"}}" width="50" height="50"> </a>
-            <a href="https://www.instagram.com/wpgpoliceharm/" target="_blank"> <img class="hvr-float"  src="{{asset "images/instagram.png"}}" height="50"> </a>
-            <a href="https://twitter.com/WpgPoliceHarm" target="_blank"> <img class="hvr-float"  src="{{asset "images/twitter.png"}}" height="50"> </a>
-
-            </div>
-            </div>
-        </footer>
-    {{!-- End Navbar --}}
+        {{> footer}}
 
     {{!-- All the main content gets inserted here, index.hbs, post.hbs, etc --}}
     {{{body}}}
