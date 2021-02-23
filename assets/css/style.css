@@ -1227,3 +1227,7 @@ button:focus {
 .author-link:last-of-type::after {
     content: '';
 }
+
+.share-hover:hover{
+    color: #DE3545 !important;
+}
