@@ -1231,3 +1231,11 @@ button:focus {
 .share-hover:hover{
     color: #DE3545 !important;
 }
+
+.pagination .newer-posts {
+    margin-right: 1rem;
+}
+
+.pagination .older-posts {
+    margin-left: 1rem;
+}
