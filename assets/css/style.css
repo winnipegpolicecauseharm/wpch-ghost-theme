@@ -289,7 +289,7 @@ a {
 ul,
 ol,
 dl {
-    list-style: none;
+    /*list-style: none;*/
 }
 em {
     font-style: italic;
@@ -548,6 +548,17 @@ blockquote::after{
     text-decoration: underline;
 }
 
+.page-content a{
+    color:#DE3545;
+}
+
+.page-content a:hover{
+    text-decoration: underline;
+}
+
+
+
+
 .center-content {
     width: 400px;
     display: flex;
@@ -696,7 +707,7 @@ body {
 
 header,
 footer {
-    padding: 15px 25px;
+    /*padding: 10px 10px;*/
     background-color: #000;
     color: #fff;
 }
