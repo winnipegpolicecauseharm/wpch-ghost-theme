@@ -2,15 +2,13 @@
 {{!-- The tag above means: insert everything in this file
 into the {body} of the default.hbs template --}}
 
-<div id="mission" data-aos="fade-up">
+<div id="mission" data-aos="fade-up" class="section-width mx-auto mt-200px">
 
         <div class="text-heading" > <h2> BLOG </h2> </div>
-        <section class="mt-5">
-                <div class="text-body">
+                <div class="page-content">
                     {{!-- Display the post content --}}
                     {{#page}} {{content}} {{/page}}
                 </div>
-            </section>
     </div>
 
 {{!-- The main content area --}}
@@ -20,42 +18,37 @@ into the {body} of the default.hbs template --}}
         <div class="p-5">
             {{!-- Iterate through each posts --}}
             {{#foreach posts}}
+                    <a class="text-dark" href="{{url}}">
+                        <article class="{{post_class}} card grow " data-aos="fade-up">
+                            <div class="card-body p-0">
 
-            <a class="text-dark" href="{{url}}">
-            <article data-aos="fade-up" class="{{post_class}} blog-card grow" >
-                <div class="card-body">
+                                {{!-- Display primary tag of the post if exists--}}
+                                {{#if primary_tag}}
+                                <a href="{{primary_tag.url}}" class="badge badge-success">
+                                    {{primary_tag.name}}
+                                </a>
+                                {{/if}}
 
-                    {{!-- Display primary tag of the post if exists--}}
-                    {{!-- {{#if primary_tag}}
-                    <a href="{{primary_tag.url}}" class="badge badge-success">
-                        {{primary_tag.name}}
+                                {{!-- Displays featured image if it exists.--}}
+                                {{#if feature_image}}
+                                    <img class="card-img-top" src={{feature_image}} />
+                                {{/if}}
+                                <br>
+                                <div class="p-4 m-2">
+                                    {{!-- Post title --}}
+                                    <div class="text-heading"> <h3>{{title}}</h3> </div>
+                                    {{!-- Displays post excerpt. Sets to display max 170 chars if not set --}}
+                                    <p class="blog-card-text">{{excerpt characters="170"}}</p>
+                                    {{!-- Displays reading time and publised time --}}
+                                    <div>
+                                        <span class="reading-time blog-card-text">{{reading_time}}</span>
+                                        <span class="blog-card-text"> - Published: {{date published_at timeago="true"}}</span>
+                                    </div>
+                                </div>
+                            </div>{{!--/.post-card-content--}}     
+                        </article>
                     </a>
-                    {{/if}} --}}
-
-                    
-                    {{!-- Post title --}}
-                    <div class="text-heading"> <h3>{{title}}</h3> </div>
-                        
-                    {{!-- Displays featured image if it exists.--}}
-                    {{#if feature_image}}
-                            <img src={{feature_image}} />
-                    {{/if}}
-                    <br>
-   
-                    {{!-- Displays post excerpt. Sets to display max 170 chars if not set --}}
-                    <p>{{excerpt characters="170"}}</p>
-
-                    <div>
-                        <span class="reading-time">{{reading_time}}</span>
-                        <span> - Published: {{date published_at timeago="true"}}</span>
-                    </div>
-
-                </div>{{!--/.post-card-content--}}
-            
-            </article>
-            </a>
-
-            {{/foreach}}
+                    {{/foreach}}
 
 {{pagination}}
         </div>
@@ -66,19 +59,3 @@ into the {body} of the default.hbs template --}}
 
 
 </main>
-
-<footer>
-            <div class="footer-items">
-            <h2 class="footer-defund-the-police">DEFUND THE POLICE.</h2>
- 
-        <!--     <img src="logo.png" width="100" height="100"> -->
-<hr>
-
-            <div class="hero-social-media">
-            <a href="https://www.facebook.com/wpgpoliceharm/" target="_blank"> <img class="hvr-float"  src="{{asset "images/facebook.png"}}" width="50" height="50"> </a>
-            <a href="https://www.instagram.com/wpgpoliceharm/" target="_blank"> <img class="hvr-float"  src="{{asset "images/instagram.png"}}" height="50"> </a>
-            <a href="https://twitter.com/WpgPoliceHarm" target="_blank"> <img class="hvr-float"  src="{{asset "images/twitter.png"}}" height="50"> </a>
-
-            </div>
-            </div>
-        </footer>
