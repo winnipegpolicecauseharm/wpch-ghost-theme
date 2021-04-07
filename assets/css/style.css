@@ -289,7 +289,6 @@ a {
 ul,
 ol,
 dl {
-    list-style: none;
 }
 em {
     font-style: italic;
@@ -548,6 +547,17 @@ blockquote::after{
     text-decoration: underline;
 }
 
+.page-content a{
+    color:#DE3545;
+}
+
+.page-content a:hover{
+    text-decoration: underline;
+}
+
+
+
+
 .center-content {
     width: 400px;
     display: flex;
@@ -696,7 +706,6 @@ body {
 
 header,
 footer {
-    padding: 15px 25px;
     background-color: #000;
     color: #fff;
 }
@@ -1230,4 +1239,16 @@ button:focus {
 
 .share-hover:hover{
     color: #DE3545 !important;
+
 }
+
+}
+
+.pagination .newer-posts {
+    margin-right: 1rem;
+}
+
+.pagination .older-posts {
+    margin-left: 1rem;
+}
+

@@ -56,8 +56,6 @@
 
         <div class="p-5">
             {{!-- Iterate through each posts --}}
-            {{#get "posts"}}
-            {{!-- Iterate through each posts --}}
             {{#foreach posts}}
 
             <a class="text-dark" href="{{url}}">
@@ -98,7 +96,8 @@
             </a>
 
             {{/foreach}}
-            {{/get}}
+
+            {{pagination}}
         </div>
 
 
