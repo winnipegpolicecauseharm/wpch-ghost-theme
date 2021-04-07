@@ -1239,6 +1239,9 @@ button:focus {
 
 .share-hover:hover{
     color: #DE3545 !important;
+
+}
+
 }
 
 .pagination .newer-posts {
@@ -1248,3 +1251,4 @@ button:focus {
 .pagination .older-posts {
     margin-left: 1rem;
 }
+
