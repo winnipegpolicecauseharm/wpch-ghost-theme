@@ -662,7 +662,7 @@ blockquote::after{
 }
 
 article img {
-    height: 20rem;
+    height: auto;
     object-fit: cover;
     display: block;
     max-width: 100%;
