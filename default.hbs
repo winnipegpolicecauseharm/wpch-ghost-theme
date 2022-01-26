@@ -84,14 +84,21 @@
 
 
     <script src="{{asset "js/jquery.min.js"}}"></script>
+    <script src="{{asset "js/jquery.fitvids.js"}}"></script>
     <script src="{{asset "js/popper.min.js"}}"></script>
     <script src="{{asset "js/bootstrap.min.js"}}"></script>
     <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
   <script>
     AOS.init();
   </script>
+    <script>
+    $(document).ready(function () {
+        // FitVids - Makes video embeds responsive
+        $(".gh-content").fitVids();
+    });
+    </script>
 
-
+    {{ghost_foot}}
 
 </body>
 
