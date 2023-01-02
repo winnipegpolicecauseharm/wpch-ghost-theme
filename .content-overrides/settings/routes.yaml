@@ -3,12 +3,16 @@ routes:
   /:
     data: page.home
     template: home
+  /get-involved/:
+    data: page.get-involved
+    template: page-get-involved
 
 collections:
   /blog/:
     permalink: /blog/{slug}/
     template: index
     data: page.blog
+    filter: tag:-[newslettertest]
   /:
     permalink: /{slug}/
     template: home
