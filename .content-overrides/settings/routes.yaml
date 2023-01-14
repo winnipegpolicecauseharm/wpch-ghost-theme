@@ -12,7 +12,11 @@ collections:
     permalink: /blog/{slug}/
     template: index
     data: page.blog
-    filter: tag:-[newslettertest]
+    filter: tag:-[newsletter, newslettertest]
+  /newsletters/:
+    permalink: /newsletters/{slug}/
+    filter: tag:newsletter
+    data: page.newsletters
   /:
     permalink: /{slug}/
     template: home
