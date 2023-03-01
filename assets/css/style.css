@@ -356,20 +356,32 @@ time {
     padding-bottom: 3rem;
 }
 
-p{
+p, ul, ol {
     font-family: 'Open Sans', sans-serif;
 }
 p + h1,
+ul + h1,
+ol + h1,
 figure + h1,
 p + h2,
+ul + h2,
+ol + h2,
 figure + h2,
 p + h3,
+ul + h3,
+ol + h3,
 figure + h3,
 p + h4,
+ul + h4,
+ol + h4,
 figure + h4,
 p + h5,
+ul + h5,
+ol + h5,
 figure + h5,
 p + h6,
+ul + h6,
+ol + h6,
 figure + h6,
 p + figure,
 figure + figure {
