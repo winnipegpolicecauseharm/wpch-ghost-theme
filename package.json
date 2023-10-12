@@ -32,7 +32,7 @@
   },
   "devDependencies": {
     "@percy/script": "^1.1.0",
-    "gscan": "^3.5.6",
+    "gscan": "^4.39.4",
     "gulp": "^4.0.2"
   },
   "scripts": {

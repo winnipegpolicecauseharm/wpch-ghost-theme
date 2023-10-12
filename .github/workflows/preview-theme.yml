@@ -113,7 +113,7 @@ jobs:
         with:
           node-version: '14.x'
       - name: Install dependencies
-        run: npm install
+        run: yarn install
       - name: Retrieve and store Heroku host
         run: echo "HEROKU_APP_HOST=${{needs.preview.outputs.heroku-app-host}}" >> $GITHUB_ENV
       - name: Percy Test
