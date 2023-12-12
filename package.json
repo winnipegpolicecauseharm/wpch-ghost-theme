@@ -3,8 +3,7 @@
   "description": "A custom Ghost theme",
   "version": "0.0.1",
   "engines": {
-    "ghost": ">=3.0.0",
-    "ghost-api": "v3"
+    "ghost": ">=3.0.0"
   },
   "license": "gpl-3.0",
   "author": {
