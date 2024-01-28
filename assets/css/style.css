@@ -702,18 +702,15 @@ article img {
     margin-right: -50vw;
 }
 
-article > figure {
+article figure {
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
 }
 
-article figure {
-    margin: 0;
-}
-
 article figcaption {
+    padding-top: 5px;
     text-align: center;
     font-size: 75%;
 }
