@@ -2,7 +2,7 @@ name: Deploy theme to production
 on:
   push:
     branches:
-      - production
+      - deployment-redux # FIXME
 jobs:
   deploy:
     runs-on: ubuntu-latest
